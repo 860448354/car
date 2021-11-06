@@ -18,7 +18,7 @@
 
     <!--新增车辆信息-->
     <insert id="insertMessage">
-        insert into car_message values (null ,#{carNumber},#{carType},#{crId})
+        insert into car_message values (null ,#{carId},#{carName},#{CustId})
     </insert>
 
 </mapper>

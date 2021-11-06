@@ -1,10 +1,12 @@
 package com.example.car.vojo.czh;
 
+import com.example.car.model.pojos.czh.CarMessage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,8 +19,7 @@ public class CarCustVo {
     private String crIdNumber;//客户身份证号
     private String crSex;//客户性别
     private Date crTime;//登记时间
-    private String carNumber; // 车牌号
-    private String carType; // 车辆型号
+    private List<CarMessage> carMessages;
 
 
 }
