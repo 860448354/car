@@ -1,6 +1,8 @@
 package com.example.car.model.pojos.dai;
 
 
+import com.example.car.model.pojos.czh.Customer;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 /*会员表*/
@@ -11,7 +13,7 @@ public class Member {
     private Timestamp memTime;/*会员办理时间*/
     private Integer memSum;/*累计消费次数*/
     private BigDecimal memIntegral;/*会员积分*/
- /* private Integer memId;客户外键*/
+    private Customer crId;/*客户外键*/
 
     @Override
     public String toString() {
@@ -23,6 +25,14 @@ public class Member {
                 ", memSum=" + memSum +
                 ", memIntegral=" + memIntegral +
                 '}';
+    }
+
+    public Customer getCrId() {
+        return crId;
+    }
+
+    public void setCrId(Customer crId) {
+        this.crId = crId;
     }
 
     public Integer getMemId() {
