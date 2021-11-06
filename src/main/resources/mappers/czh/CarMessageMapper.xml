@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.czh.CarMessageMapper">
+        <resultMap id="message" type="CarMessage">
+            <id property="carMessageId" column="car_message_id"></id>
+            <result property="carNumber" column="car_number"></result>
+            <result property="carType" column="car_type"></result>
+        </resultMap>
+
+
+
+    <!--查询所有车辆信息-->
+    <select id="selectAll" resultMap="message">
+        select * from car_message
+    </select>
+
+    <!--新增车辆信息-->
+    <insert id="insertMessage">
+        insert into car_message values (null ,#{carNumber},#{carType},#{crId})
+    </insert>
+
+</mapper>
