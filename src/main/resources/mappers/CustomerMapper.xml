@@ -12,8 +12,4 @@
         insert into customer values (#{crId},#{crName},#{crPhone},#{crIdNumber},#{crSex},#{crTime})
     </insert>
 
-    <!--查询所有-->
-    <select id="selectAll" resultType="com.example.car.model.pojos.czh.Customer">
-        select cr_id,cr_name,cr_phone,cr_id_number,cr_sex,cr_time from customer order by cr_id desc
-    </select>
 </mapper>

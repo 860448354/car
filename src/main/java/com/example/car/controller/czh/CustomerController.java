@@ -4,6 +4,7 @@ import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.services.czh.CarMessageService;
 import com.example.car.model.services.czh.CustomerService;
 import com.example.car.vojo.czh.CarCustVo;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,7 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     CustomerService customerService;
-    @Autowired
-    CarMessageService carMessageService;
+
 
     /** 新增客户以及客户车辆信息
      * @param carCustVo
@@ -36,9 +36,18 @@ public class CustomerController {
             return -1;
         }
     }
-    /*查询所有客户*/
-    @GetMapping("selectCar")
-    public List<Customer> selectAll(){
-        return customerService.selectAll();
+
+    /** 分页查询
+     * @param pageSize
+     * @param pageNo
+     * @return
+     */
+    @PostMapping("selectPage")
+    public PageInfo<Customer> selectPageCust(@RequestParam("pageSize")Integer pageSize,
+                                             @RequestParam("pageNo")Integer pageNo){
+        PageInfo<Customer> page = customerService.selectList(pageNo,pageSize);
+
+        return page;
+
     }
 }
