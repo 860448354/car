@@ -1,5 +1,6 @@
 package com.example.car.controller.hyj;
 
+import com.example.car.model.pojos.hyj.Comm;
 import com.example.car.model.pojos.hyj.Store;
 import com.example.car.model.pojos.hyj.Supplier;
 import com.example.car.model.pojos.kj.Staff;
@@ -24,7 +25,11 @@ public class PurchaseController {
         return purchaseService.findAllStore();
     }
     @RequestMapping("findCaiGou")
-    public List<Staff> findCaiGou(@RequestBody Staff staff){
-        return purchaseService.findCaiGou(staff);
+    public List<Staff> findCaiGou(){
+        return purchaseService.findCaiGou();
+    }
+    @RequestMapping("findCommBySupplierName")
+    public List<Comm> findCommBySupplierName(@RequestBody Comm c){
+        return purchaseService.findCommBySupplierName(c);
     }
 }

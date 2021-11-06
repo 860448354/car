@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 /*会员表*/
 public class Member {
     private Integer memId;/*编号*/
-    private Integer memGrade;/*会员等级*/
+    private String memGrade;/*会员等级*/
     private BigDecimal memBalance;/*会员余额*/
     private Timestamp memTime;/*会员办理时间*/
     private Integer memSum;/*累计消费次数*/
@@ -43,11 +43,11 @@ public class Member {
         this.memId = memId;
     }
 
-    public Integer getMemGrade() {
+    public String getMemGrade() {
         return memGrade;
     }
 
-    public void setMemGrade(Integer memGrade) {
+    public void setMemGrade(String memGrade) {
         this.memGrade = memGrade;
     }
 

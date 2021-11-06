@@ -13,9 +13,8 @@ import java.util.List;
 public class MemberServices {
     @Autowired
     MemberMapper mapper;
-
     /*分页查询*/
-    public PageInfo<Member> selectByChoose(Integer pageNo,
+    public PageInfo<Member> SelectByChoose(Integer pageNo,
                                            Integer pageSize,
                                            Member member){
         PageHelper.startPage(pageNo,pageSize);/*开启分页模式*/
