@@ -1,13 +1,13 @@
 package com.example.car.controller.czh;
 
+import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.services.czh.CarMessageService;
 import com.example.car.model.services.czh.CustomerService;
 import com.example.car.vojo.czh.CarCustVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -35,5 +35,10 @@ public class CustomerController {
         }else{
             return -1;
         }
+    }
+    /*查询所有客户*/
+    @GetMapping("selectCar")
+    public List<Customer> selectAll(){
+        return customerService.selectAll();
     }
 }

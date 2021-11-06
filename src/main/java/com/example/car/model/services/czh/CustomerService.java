@@ -3,6 +3,7 @@ package com.example.car.model.services.czh;
 import com.example.car.model.dao.czh.CarMessageMapper;
 import com.example.car.model.dao.czh.CostomerMapper;
 import com.example.car.model.pojos.czh.CarMessage;
+import com.example.car.model.pojos.czh.Customer;
 import com.example.car.vojo.czh.CarCustVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,10 @@ public class CustomerService{
             return -1;
         }
     }
-
-
-
+    /*
+    * 查询所有客户信息
+    * */
+    public List<Customer> selectAll(){
+         return costomerMapper.selectAll();
+    }
 }

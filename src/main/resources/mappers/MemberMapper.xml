@@ -10,6 +10,7 @@
            <result property="memTime" column="mem_time"></result>
            <result property="memSum" column="mem_sum"></result>
            <result property="memIntegral" column="mem_integral"></result>
+           <result property="memBalancedsum" column="mem_balancedsum"></result>
            <association property="crId" javaType="com.example.car.model.pojos.czh.Customer">
                <id column="cr_id" property="crId"/>
                <result column="cr_name" property="crName"/>
@@ -22,11 +23,11 @@
     <select id="SelectByChoose" resultMap="menberResult">
         select m.mem_id,
                (CASE m.mem_grade
-                    WHEN  0 THEN '钻石会员'
-                    WHEN  1 THEN '白金会员'
-                    WHEN  2 THEN '至尊会员'
+                    WHEN  0 THEN '普通会员'
+                    WHEN  1 THEN '钻石会员'
+                    WHEN  2 THEN '超级会员'
                     ELSE 'null' END) AS 'mem_grade', m.mem_balance, m.mem_time, m.mem_sum, m.mem_integral,
-               c.cr_id,c.cr_name, c.cr_phone, c.cr_id_number, c.cr_sex, c.cr_time
+              m.mem_balancedsum, c.cr_id,c.cr_name, c.cr_phone, c.cr_id_number, c.cr_sex, c.cr_time
         from member m left join customer c on m.mem_khid=c.cr_id
         <where>
             <if test="memGrade!=null and memGrade!=''">
