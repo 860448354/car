@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.kj.UserMapper">
+<!--    查询账户密码-->
+    <select id="selectLogin" resultType="com.example.car.model.pojos.kj.User">
+        SELECT * FROM user WHERE u_account=#{use} AND u_pwd=#{pwd}
+    </select>
+</mapper>

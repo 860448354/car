@@ -9,4 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Comm {
     private int commId;
+    private int supplierId;
+    private String commName;
+    private String commSpe;
+    private String commCar;
+    private String commUnit;
+    private double commMoney;
+    private int commNum;
 }

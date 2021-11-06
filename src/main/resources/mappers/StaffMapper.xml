@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.kj.StaffMapper">
+    <select id="selectAll" resultMap="base">
+        SELECT * FROM staff sf
+        INNER JOIN dept d ON sf.sf_dpid=d.dt_id
+        INNER JOIN post p ON sf.sf_ptid=p.pt_id
+    </select>
+
+    <resultMap id="base" type="com.example.car.model.pojos.kj.Staff">
+        <id column="sf_id" property="sfId"/>
+        <result column="sf_name" property="sfName" />
+        <result column="sf_phone" property="sfPhone" />
+        <result column="sf_card" property="sfCard" />
+        <result column="sf_state" property="sfState" />
+
+        <association property="mydept">
+            <id column="dt_id" property="dtId"/>
+            <result column="dt_name" property="dtName"/>
+        </association>
+        <association property="mypost">
+            <id column="pt_id" property="ptId"/>
+            <result column="pt_name" property="ptName" />
+            <result  column="dt_id" property="dtId" />
+        </association>
+
+
+
+    </resultMap>
+</mapper>

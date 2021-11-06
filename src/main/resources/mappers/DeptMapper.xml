@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.kj.DeptMapper">
+
+    <select id="selectAll" resultMap="base">
+        SELECT * FROM dept
+    </select>
+
+    <resultMap id="base" type="com.example.car.model.pojos.kj.Dept">
+            <id property="dtId" column="dt_id"/>
+            <result property="dtName" column="dt_name"/>
+            <collection property="mypost"
+                        ofType="com.example.car.model.pojos.kj.Post"
+                        select="com.example.car.model.dao.kj.PostMapper.selectBydid" column="dt_id">
+
+            </collection>
+    </resultMap>
+
+</mapper>
