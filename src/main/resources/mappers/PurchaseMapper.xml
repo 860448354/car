@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.hyj.PurchaseMapper">
+    <!--供货商-->
+    <resultMap id="supplier" type="com.example.car.model.pojos.hyj.Supplier">
+        <id property="supplierId" column="supplier_id"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="supplierPer" column="supplier_per"/>
+        <result property="supplierPhone" column="supplier_phone"/>
+    </resultMap>
+    <!--查询所有供货商-->
+    <select id="findAllSupplier" resultType="com.example.car.model.pojos.hyj.Supplier">
+        select * from supplier
+    </select>
+    <!--仓库-->
+    <resultMap id="store" type="com.example.car.model.pojos.hyj.Store">
+        <id property="storeId" column="store_id"/>
+        <result property="storeName" column="store_name"/>
+    </resultMap>
+    <!--查询所有仓库-->
+    <select id="findAllStore" resultMap="store">
+        select * from store
+    </select>
+    <!--查询所有采购员-->
+    <select id="findCaiGou" resultType="com.example.car.model.pojos">
+        select * from staff where sf_state = 1 and sf_ptid = 8
+    </select>
+</mapper>
