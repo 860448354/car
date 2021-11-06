@@ -6,6 +6,8 @@ import com.example.car.model.pojos.dai.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerrechargeServices {
     @Autowired
@@ -18,5 +20,9 @@ public class CustomerrechargeServices {
     /*修改会员余额*/
     public  Integer updayeByMeony(Member member){
         return mapper.updayeByMeony(member);
+    }
+    /*查询会员新增记录*/
+    public List<Customerrecharge> selectAll(Integer id){
+        return mapper.selectAll(id );
     }
 }

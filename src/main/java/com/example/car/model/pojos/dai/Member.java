@@ -12,6 +12,7 @@ public class Member {
     private BigDecimal memBalance;/*会员余额*/
     private Timestamp memTime;/*会员办理时间*/
     private Integer memSum;/*累计消费次数*/
+    private BigDecimal memBalancedsum;/*会员总余额*/
     private BigDecimal memIntegral;/*会员积分*/
     private Customer crId;/*客户外键*/
 
@@ -19,12 +20,22 @@ public class Member {
     public String toString() {
         return "Member{" +
                 "memId=" + memId +
-                ", memGrade=" + memGrade +
+                ", memGrade='" + memGrade + '\'' +
                 ", memBalance=" + memBalance +
                 ", memTime=" + memTime +
                 ", memSum=" + memSum +
+                ", memBalancedsum=" + memBalancedsum +
                 ", memIntegral=" + memIntegral +
+                ", crId=" + crId +
                 '}';
+    }
+
+    public BigDecimal getMemBalancedsum() {
+        return memBalancedsum;
+    }
+
+    public void setMemBalancedsum(BigDecimal memBalancedsum) {
+        this.memBalancedsum = memBalancedsum;
     }
 
     public Customer getCrId() {
