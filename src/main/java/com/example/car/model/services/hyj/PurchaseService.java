@@ -2,6 +2,7 @@ package com.example.car.model.services.hyj;
 
 import com.example.car.model.dao.hyj.PurchaseMapper;
 import com.example.car.model.pojos.hyj.Comm;
+import com.example.car.model.pojos.hyj.Purchase;
 import com.example.car.model.pojos.hyj.Store;
 import com.example.car.model.pojos.hyj.Supplier;
 import com.example.car.model.pojos.kj.Staff;
@@ -26,5 +27,8 @@ public class PurchaseService {
     }
     public List<Comm> findCommBySupplierName(@RequestBody Comm c){
         return purchaseMapper.findCommBySupplierName(c);
+    }
+    public void addPur(Purchase pur){
+        purchaseMapper.addPur(pur);
     }
 }
