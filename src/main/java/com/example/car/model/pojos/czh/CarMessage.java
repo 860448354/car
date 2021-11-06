@@ -15,7 +15,7 @@ public class CarMessage {
     private int carMessageId; // 车辆信息主键
     private String carNumber; // 车牌号
     private String carType; // 车辆型号
-
+    private String carState; // 车辆状态
 
     private Customer carCust; // 客户车辆关系字段
 }
