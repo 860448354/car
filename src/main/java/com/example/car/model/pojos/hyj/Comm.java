@@ -1,4 +1,4 @@
-package com.example.car.model.pojos;
+package com.example.car.model.pojos.hyj;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
