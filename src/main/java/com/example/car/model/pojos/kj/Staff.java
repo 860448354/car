@@ -17,6 +17,9 @@ public class Staff {
   private Integer sfDpid;
   private Integer sfPtid;
 
+  private Dept mydept;
+  private Post mypost;
+
 
 
 }
