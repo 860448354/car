@@ -23,7 +23,7 @@
         select * from store
     </select>
     <!--查询所有采购员-->
-    <select id="findCaiGou" resultType="com.example.car.model.pojos">
+    <select id="findCaiGou" resultType="com.example.car.model.pojos.kj.Staff">
         select * from staff where sf_state = 1 and sf_ptid = 8
     </select>
 </mapper>

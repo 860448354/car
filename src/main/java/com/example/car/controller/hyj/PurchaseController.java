@@ -2,7 +2,9 @@ package com.example.car.controller.hyj;
 
 import com.example.car.model.pojos.hyj.Store;
 import com.example.car.model.pojos.hyj.Supplier;
+import com.example.car.model.pojos.kj.Staff;
 import com.example.car.model.services.hyj.PurchaseService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +22,9 @@ public class PurchaseController {
     @RequestMapping("findAllStore")
     public List<Store> findAllStore(){
         return purchaseService.findAllStore();
+    }
+    @RequestMapping("findCaiGou")
+    public List<Staff> findCaiGou(@RequestBody Staff staff){
+        return purchaseService.findCaiGou(staff);
     }
 }
