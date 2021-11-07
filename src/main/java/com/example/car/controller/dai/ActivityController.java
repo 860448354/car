@@ -35,4 +35,10 @@ public class ActivityController {
         PageInfo<Activity> pageQuery=services.selectByChoose(pageNo,pageSize,activity);
         return pageQuery;
     }
+    /*修改*/
+    @PostMapping("update")
+    public Integer updataByState(@RequestBody Activity activity){
+        return services.updataByState(activity);
+    }
+
 }

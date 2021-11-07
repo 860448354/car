@@ -18,6 +18,7 @@
                <result column="cr_idNumber" property="crIdNumber"/>
                <result column="cr_sex" property="crSex"/>
                <result column="cr_time" property="crTime"/>
+               <result column="cr_member" property="crMember"/>
            </association>
        </resultMap>
     <!--分页查询-->
@@ -51,6 +52,10 @@
                             on m.mem_khid=c.cr_id
         order by m.mem_id desc
 
+    </select>
+    <!--分页-->
+    <select id="selectByChooseCus" resultType="com.example.car.model.pojos.czh.Customer">
+        select cr_id, cr_name, cr_phone, cr_id_number, cr_sex, cr_time, isdelete ,cr_member from customer
     </select>
 
 </mapper>

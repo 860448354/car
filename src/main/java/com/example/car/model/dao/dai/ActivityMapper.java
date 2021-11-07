@@ -15,5 +15,7 @@ public interface ActivityMapper {
     Integer insterByMember(Actparticipants actparticipants);
     /*查询所有活动*/
     List<Activity> selectByChoose(Activity activity);
+    /*修改活动状态*/
+    Integer updataByState(Activity activity);
 
 }

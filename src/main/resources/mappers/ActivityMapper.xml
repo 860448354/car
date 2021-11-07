@@ -52,6 +52,17 @@
         from activity a
                  left join  activitytype c on a.acti_hhdid=c.atype_id
                  left join  staff u on u.sf_id=a.acti_cjtid
+        <where>
+            <if test="actiName!=null and actiName!=''">
+                and acti_name =#{actiName}
+            </if>
+            <if test="actiState!=null and actiState!=''">
+                and acti_state =#{actiState}
+            </if>
+        </where>
         order  by a.acti_id desc
     </select>
+    <update id="updataByState" parameterType="com.example.car.model.pojos.dai.Activity">
+          update activity set acti_state=#{actiState} where acti_id=#{actiId}
+    </update>
 </mapper>

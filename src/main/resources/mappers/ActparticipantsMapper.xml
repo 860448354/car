@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.dai.ActparticipantsMapper">
+    <resultMap id="pantsResult" type="Actparticipants">
+         <id property="panId" column="pan_id"></id>
+        <association property="panActId" javaType="com.example.car.model.pojos.dai.Activity">
+            <id column="acti_id" property="actiId"></id>
+            <result column="acti_name" property="actiName"></result>
+            <result column="acti_site" property="actiSite"></result>
+            <result column="acti_peoplesum" property="actiPeoplesum"></result>
+            <result column="acti_state" property="actiState"></result>
+            <result column="acti_time" property="actiTime"></result>
+        </association>
+        <association property="panMemId" javaType="com.example.car.model.pojos.czh.Customer">
+            <id column="cr_id" property="crId"/>
+            <result column="cr_name" property="crName"/>
+            <result column="cr_phone" property="crPhone"/>
+            <result column="cr_idNumber" property="crIdNumber"/>
+            <result column="cr_sex" property="crSex"/>
+            <result column="cr_time" property="crTime"/>
+        </association>
+    </resultMap>
+     <select id="selectByPants" resultMap="pantsResult">
+         select a.pan_id, a.hh_id, a.mem_id,b.cr_name
+         from actparticipants a left join activity c on c.acti_id=a.hh_id
+                                left join customer b on b.cr_id=a.mem_id
+         where a.hh_id=#{id}
+     </select>
+</mapper>
