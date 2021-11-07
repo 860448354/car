@@ -45,11 +45,12 @@
                     WHEN  1 THEN '钻石会员'
                     WHEN  2 THEN '超级会员'
                     ELSE 'null' END) AS 'mem_grade', m.mem_balance, m.mem_time, m.mem_sum, m.mem_integral,
-                     m.mem_balancedsum ,c.cr_name
+                     m.mem_balancedsum ,c.cr_name,c.cr_id
                     from member m
                         left join customer c
                             on m.mem_khid=c.cr_id
         order by m.mem_id desc
 
     </select>
+
 </mapper>

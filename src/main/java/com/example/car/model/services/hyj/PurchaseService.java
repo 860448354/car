@@ -32,4 +32,7 @@ public class PurchaseService {
     public List<Purchase> findTable(){
         return purchaseMapper.findTable();
     }
+    public List<Purchase> findTable2(){
+        return purchaseMapper.findTable2();
+    }
 }

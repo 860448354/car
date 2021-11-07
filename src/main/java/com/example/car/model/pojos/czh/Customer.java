@@ -24,5 +24,6 @@ public class Customer implements Serializable {
     private Date crTime;//登记时间
 
     private List<CarMessage> crCar; //客户车辆关系字段
+    private List<MaintenanceDispatching> maintenanceDispatchingSust;
 
 }

@@ -1,13 +1,13 @@
-package com.example.car.model.pojos.dai;
+package com.example.car.vojo.dai;
 
-import com.example.car.model.pojos.kj.Staff;
+import com.example.car.model.pojos.dai.Activitytype;
+import com.example.car.model.pojos.dai.Actparticipants;
 import com.example.car.model.pojos.kj.User;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-/* 活动表*/
-public class Activity {
+public class ActivityMemberVo {
     private Integer actiId;/*编号*/
     private String actiName;/*活动名称*/
     private String actiSite;/*活动地点*/
@@ -15,14 +15,13 @@ public class Activity {
     private Timestamp actiTime;/*活动日期*/
     private String actiState;/*活动状态*/
     private Activitytype typId;/*活动类型外键*/
-    private User activityUid;/*角色外键*/
-    private Staff activityEmpid;/*员工外键*/
+    private User activityUid;/*员工外键*/
     private List<Actparticipants> actipar;/*活动参与人员*/
-
+    private List fruitesis;
 
     @Override
     public String toString() {
-        return "Activity{" +
+        return "ActivityMemberVo{" +
                 "actiId=" + actiId +
                 ", actiName='" + actiName + '\'' +
                 ", actiSite='" + actiSite + '\'' +
@@ -31,8 +30,8 @@ public class Activity {
                 ", actiState='" + actiState + '\'' +
                 ", typId=" + typId +
                 ", activityUid=" + activityUid +
-                ", activityEmpid=" + activityEmpid +
                 ", actipar=" + actipar +
+                ", fruitesis=" + fruitesis +
                 '}';
     }
 
@@ -44,35 +43,12 @@ public class Activity {
         this.actiState = actiState;
     }
 
-    public Staff getActivityEmpid() {
-        return activityEmpid;
+    public List getFruitesis() {
+        return fruitesis;
     }
 
-    public void setActivityEmpid(Staff activityEmpid) {
-        this.activityEmpid = activityEmpid;
-    }
-
-    public List<Actparticipants> getActipar() {
-        return actipar;
-    }
-    public void setActipar(List<Actparticipants> actipar) {
-        this.actipar = actipar;
-    }
-
-    public User getActivityUid() {
-        return activityUid;
-    }
-
-    public void setActivityUid(User activityUid) {
-        this.activityUid = activityUid;
-    }
-
-    public Activitytype getTypId() {
-        return typId;
-    }
-
-    public void setTypId(Activitytype typId) {
-        this.typId = typId;
+    public void setFruitesis(List fruitesis) {
+        this.fruitesis = fruitesis;
     }
 
     public Integer getActiId() {
@@ -113,5 +89,29 @@ public class Activity {
 
     public void setActiTime(Timestamp actiTime) {
         this.actiTime = actiTime;
+    }
+
+    public Activitytype getTypId() {
+        return typId;
+    }
+
+    public void setTypId(Activitytype typId) {
+        this.typId = typId;
+    }
+
+    public User getActivityUid() {
+        return activityUid;
+    }
+
+    public void setActivityUid(User activityUid) {
+        this.activityUid = activityUid;
+    }
+
+    public List<Actparticipants> getActipar() {
+        return actipar;
+    }
+
+    public void setActipar(List<Actparticipants> actipar) {
+        this.actipar = actipar;
     }
 }
