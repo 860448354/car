@@ -21,5 +21,7 @@ public class CarCustVo {
     private Date crTime;//登记时间
     private List<CarMessage> carMessages;
 
+    private Integer pageNo;
+    private Integer pageSize;
 
 }

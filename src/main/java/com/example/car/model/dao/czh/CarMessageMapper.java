@@ -20,7 +20,9 @@ public interface CarMessageMapper {
 
 
     /** 新增客户车辆信息
-     * @param carMessage 车辆
+     * @param carId 车辆主键
+     * @param carName 车辆姓名
+     * @param CustId 客户
      * @return
      */
     Integer insertMessage(String carId,String carName,int CustId);
