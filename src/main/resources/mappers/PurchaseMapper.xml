@@ -37,10 +37,10 @@
     </insert>
     <!--新增订单详表-->
     <insert id="addPurXq">
-        insert into pur_xq(supplier_name,comm_name,comm_spe,comm_car,comm_unit,comm_money,comm_num,pur_id)
+        insert into pur_xq(supplier_name,comm_name,comm_spe,comm_car,comm_unit,comm_money,comm_num,comm_s_num,pur_id)
         values  
         <foreach collection="list" separator="," item="o">
-            (#{o.supplierName},#{o.commName},#{o.commSpe},#{o.commCar},#{o.commUnit},#{o.commMoney},#{o.commNum},#{purId})
+            (#{o.supplierName},#{o.commName},#{o.commSpe},#{o.commCar},#{o.commUnit},#{o.commMoney},#{o.commNum},#{o.commNum},#{purId})
         </foreach>
     </insert>
     <resultMap id="purchase" type="com.example.car.model.pojos.hyj.Purchase">

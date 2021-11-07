@@ -17,4 +17,5 @@ public class PurXq {
     private String commUnit;
     private double commMoney;
     private int commNum;
+    private int commSNum;
 }

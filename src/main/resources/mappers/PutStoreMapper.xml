@@ -25,6 +25,7 @@
             <result property="commMoney" column="comm_money"/>
             <result property="commNum" column="comm_num"/>
             <result property="purId" column="pur_id"/>
+            <result property="commSNum" column="comm_s_num"/>
         </collection>
     </resultMap>
     <select id="findPurD" resultMap="purchase">
@@ -34,5 +35,25 @@
     <!--已审核的订单修改为待收货-->
     <update id="editState">
         update purchase set pur_state = '待收货' where pur_id = #{purId}
+    </update>
+    <!--新增入库单-->
+    <insert id="addPutStore">
+        insert into put_sto(pur_id,put_sto_time,put_sto_num,put_sto_name)
+        values(#{purId},now(),#{putStoNum},#{putStoName})
+    </insert>
+    <!--修改入库数量-->
+    <update id="editPutStore">
+
+        <foreach collection="list" item="o"  separator=",">
+        update pur_xq
+            <set>
+                comm_s_num = #{o.commSNum}
+            </set>
+        where pur_id = #{o.purId}
+        </foreach>
+    </update>
+    <!--入库后修改状态-->
+    <update id="editPutStoreState">
+        update purchase set pur_state = '已收货' where pur_id = #{purId}
     </update>
 </mapper>

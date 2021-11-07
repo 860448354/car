@@ -15,4 +15,5 @@ public class PutSto {
     private Date putStoTime;
     private String putStoNum;
     private String putStoName;
+    private Purchase purchase;
 }
