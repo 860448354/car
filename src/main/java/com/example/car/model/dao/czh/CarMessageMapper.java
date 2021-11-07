@@ -13,10 +13,10 @@ import java.util.List;
 public interface CarMessageMapper {
 
 
-    /** 查询所有客户
+    /** 查询车辆根据主键
      * @return
      */
-    List<CarMessage> selectAll();
+    CarMessage selectAById(Integer crId);
 
 
     /** 新增客户车辆信息
@@ -28,4 +28,5 @@ public interface CarMessageMapper {
     Integer insertMessage(String carId,String carName,int CustId);
 
 
+    Integer updateCar(String upState,Integer carId);
 }

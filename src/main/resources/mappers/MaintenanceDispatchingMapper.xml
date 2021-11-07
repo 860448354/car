@@ -7,6 +7,7 @@
         <id property="mdId" column="md_id"></id>
         <result property="dispatchingState" column="dispatching_state"></result>
         <result property="dispatchingTime" column="dispatching_time"></result>
+        <result property="moneyMaint" column="money_maint"></result>
         <association property="carMessage" javaType="CarMessage">
             <id property="carMessageId" column="car_message_id"></id>
             <result property="carNumber" column="car_number"></result>
@@ -30,4 +31,9 @@
 
                                                  inner join customer cr on cr.cr_id = md.cr_id
     </select>
+
+
+    <insert id="insetMaint">
+        insert into maintenance_dispatching values (null ,#{crId},#{carMessageId},#{sfId},#{State},#{paiGongTime},300)
+    </insert>
 </mapper>

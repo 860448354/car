@@ -3,6 +3,7 @@ package com.example.car.model.dao.czh;
 import com.example.car.model.pojos.czh.Customer;
 import com.example.car.vojo.czh.CarCustVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface CustomerMapper {
     /** 查询所有车辆和客户
      * @return
      */
-    List<Customer> selectCustAndCarList();
+    List<Customer> selectCustAndCarList(@Param("carCustVo") CarCustVo carCustVo);
 
 
     /** 查询所有客户信息

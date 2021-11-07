@@ -18,6 +18,7 @@
                <result column="cr_idNumber" property="crIdNumber"/>
                <result column="cr_sex" property="crSex"/>
                <result column="cr_time" property="crTime"/>
+               <result column="cr_member" property="crMember"/>
            </association>
        </resultMap>
     <!--分页查询-->
@@ -45,11 +46,16 @@
                     WHEN  1 THEN '钻石会员'
                     WHEN  2 THEN '超级会员'
                     ELSE 'null' END) AS 'mem_grade', m.mem_balance, m.mem_time, m.mem_sum, m.mem_integral,
-                     m.mem_balancedsum ,c.cr_name
+                     m.mem_balancedsum ,c.cr_name,c.cr_id
                     from member m
                         left join customer c
                             on m.mem_khid=c.cr_id
         order by m.mem_id desc
 
     </select>
+    <!--分页-->
+    <select id="selectByChooseCus" resultType="com.example.car.model.pojos.czh.Customer">
+        select cr_id, cr_name, cr_phone, cr_id_number, cr_sex, cr_time, isdelete ,cr_member from customer
+    </select>
+
 </mapper>

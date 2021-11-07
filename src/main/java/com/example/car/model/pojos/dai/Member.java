@@ -5,6 +5,8 @@ import com.example.car.model.pojos.czh.Customer;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
+
 /*会员表*/
 public class Member {
     private Integer memId;/*编号*/
@@ -15,6 +17,7 @@ public class Member {
     private BigDecimal memBalancedsum;/*会员总余额*/
     private BigDecimal memIntegral;/*会员积分*/
     private Customer crId;/*客户外键*/
+    private List<Actparticipants> pants;/*会员活动人员表*/
 
     @Override
     public String toString() {
@@ -27,7 +30,16 @@ public class Member {
                 ", memBalancedsum=" + memBalancedsum +
                 ", memIntegral=" + memIntegral +
                 ", crId=" + crId +
+                ", pants=" + pants +
                 '}';
+    }
+
+    public List<Actparticipants> getPants() {
+        return pants;
+    }
+
+    public void setPants(List<Actparticipants> pants) {
+        this.pants = pants;
     }
 
     public BigDecimal getMemBalancedsum() {
