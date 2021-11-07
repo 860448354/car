@@ -15,9 +15,9 @@ public class MaintenanceDispatchingController {
     MaintenanceDispatchingService maintenanceDispatchingService;
 
 
-    @GetMapping("all")
-    public List<MaintenanceDispatching> selectList(){
-        List<MaintenanceDispatching> list = maintenanceDispatchingService.selectAllMaint();
+    @PostMapping("all")
+    public List<MaintenanceDispatching> selectList(@RequestBody MaintVo maintVo){
+        List<MaintenanceDispatching> list = maintenanceDispatchingService.selectAllMaint(maintVo);
         return list;
     }
 
