@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,5 +18,5 @@ public class Comm {
     private String commUnit;
     private double commMoney;
     private int commNum;
-    private int CommSNum;
+    private List<Store> store;
 }
