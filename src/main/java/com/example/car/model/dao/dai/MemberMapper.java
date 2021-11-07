@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
 /*分页查询会员*/
-  List<Member> SelectByChoose(Member member);
+  List<Member> selectByChoose(Member member);
 }
