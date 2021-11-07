@@ -16,4 +16,5 @@ public class Comm {
     private String commUnit;
     private double commMoney;
     private int commNum;
+    private int CommSNum;
 }
