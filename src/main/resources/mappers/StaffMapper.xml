@@ -24,8 +24,11 @@
             <result column="pt_name" property="ptName" />
             <result  column="dt_id" property="dtId" />
         </association>
-
-
+        
 
     </resultMap>
+    
+    <select id="selectSta" resultType="Staff">
+        select s.sf_id,s.sf_name from staff s where s.sf_dpid = 4
+    </select>
 </mapper>
