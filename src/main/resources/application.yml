@@ -11,6 +11,7 @@ spring:
     filter: stat
   jackson:
     date-format: yyyy-MM-dd
+    time-zone: GMT+8
 
 mybatis:
   type-aliases-package: com.example.car.model.pojos

@@ -28,6 +28,8 @@ public class PurchaseService {
     public void addPur(Purchase pur){
         purchaseMapper.addPur(pur);
         purchaseMapper.addPurXq(pur.getPurId(),pur.getPurXq());
-
+    }
+    public List<Purchase> findTable(){
+        return purchaseMapper.findTable();
     }
 }
