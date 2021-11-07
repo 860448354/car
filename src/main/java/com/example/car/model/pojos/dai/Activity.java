@@ -8,7 +8,10 @@ public class Activity {
     private String actiSite;/*活动地点*/
     private Integer actiPeoplesum;/*参与人数*/
     private Timestamp actiTime;/*活动日期*/
-    /*private Integer actiId;活动类型外键*/
+    private Activitytype typId;/*活动类型外键*/
+    /*
+    * private Integer actiId;员工外键
+    * */
 
     @Override
     public String toString() {
@@ -18,7 +21,16 @@ public class Activity {
                 ", actiSite='" + actiSite + '\'' +
                 ", actiPeoplesum=" + actiPeoplesum +
                 ", actiTime=" + actiTime +
+                ", typId=" + typId +
                 '}';
+    }
+
+    public Activitytype getTypId() {
+        return typId;
+    }
+
+    public void setTypId(Activitytype typId) {
+        this.typId = typId;
     }
 
     public Integer getActiId() {

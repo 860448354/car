@@ -20,14 +20,14 @@ public class CustomerrechargeController {
     @PostMapping("insterall")
     public MyResult insert(@RequestBody Customerrecharge customerrecharge){
         System.out.println("-------"+customerrecharge.toString());
-        Customerrecharge charge=new Customerrecharge(
+        /*Customerrecharge charge=new Customerrecharge(
                 customerrecharge.getChargeId(),
                 customerrecharge.getChargeTime(),
                 customerrecharge.getChargeMenoy(),
                 customerrecharge.getChargeBalance(),
                 customerrecharge.getChargeKhid()
         );
-        Integer charges=services.insterAll(charge);
+        Integer charges=services.insterAll(charge);*/
         return MyResult.SUCCESS_Object(services.getClass());
     }
     /*修改余额*/

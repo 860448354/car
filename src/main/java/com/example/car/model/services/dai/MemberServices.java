@@ -21,4 +21,8 @@ public class MemberServices {
         List<Member> list = mapper.selectByChoose(member);/*调用查询方法*/
         return new PageInfo<>(list);/*将查询结果封装到PageInfo对象中*/
     }
+    /*查询所有会员*/
+    public List<Member> selectAll(){
+        return mapper.selectAll();
+    }
 }

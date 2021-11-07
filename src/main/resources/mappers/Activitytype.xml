@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.dai.ActivitytypeMapper">
+    <!--查询所有会员活动类型-->
+    <select id="selectAllType" resultType="com.example.car.model.pojos.dai.Activitytype">
+        select e.atype_id,atype_name from activitytype e order by atype_id desc
+    </select>
+</mapper>

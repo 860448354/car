@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping( "/member")
@@ -21,5 +23,10 @@ public class MemberController {
                                            Integer pageSize){
         PageInfo<Member> pageQuery=services.selectByChoose(pageNo,pageSize,member);
         return pageQuery;
+    }
+    /*查询所有*/
+    @GetMapping("selectall")
+    public List<Member> selectAllMem(){
+        return services.selectAll();
     }
 }
