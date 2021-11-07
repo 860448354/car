@@ -1,6 +1,6 @@
 package com.example.car.controller.csp;
 
-public class CustomerAccount {
+public class CustomerAccountController {
     public void addAccount(){
 
     }
