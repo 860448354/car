@@ -41,13 +41,12 @@ public class CustomerService{
     }
 
     /** 分页查询客户和车辆
-     * @param pageSize
-     * @param pageNo
+     *
      * @return
      */
-    public PageInfo<Customer> selectList(Integer pageSize,Integer pageNo){
+    public PageInfo<Customer> selectList(CarCustVo carCustVo){
 
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(carCustVo.getPageNo(),carCustVo.getPageSize());
 
         List<Customer> list = customerMapper.selectCustAndCarList();
 

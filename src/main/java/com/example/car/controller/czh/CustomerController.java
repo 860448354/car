@@ -38,15 +38,12 @@ public class CustomerController {
     }
 
     /** 分页查询
-     * @param pageSize
-     * @param pageNo
+     * @param carCustVo
      * @return
      */
     @PostMapping("selectPage")
-    public PageInfo<Customer> selectPageCust(@RequestParam("pageSize")Integer pageSize,
-                                             @RequestParam("pageNo")Integer pageNo){
-        PageInfo<Customer> page = customerService.selectList(pageNo,pageSize);
-
+    public PageInfo<Customer> selectPageCust(@RequestBody CarCustVo carCustVo){
+        PageInfo<Customer> page = customerService.selectList(carCustVo);
         return page;
 
     }
