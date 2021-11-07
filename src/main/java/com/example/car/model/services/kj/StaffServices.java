@@ -46,4 +46,14 @@ public class StaffServices {
 
         return add>0?MyResult.SUCCESS:MyResult.FAILURE("新增失败");
     }
+
+    /** 根据用户 id 修改用户状态
+     * @param sid
+     * @param stateid
+     * @return
+     */
+    public MyResult staffUpdate(String sid,String stateid){
+        Integer integer = staffMapper.userStaffState(stateid, sid);
+        return integer>0?MyResult.SUCCESS:MyResult.FAILURE("更新失败");
+    }
 }

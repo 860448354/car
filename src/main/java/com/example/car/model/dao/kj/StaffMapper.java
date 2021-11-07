@@ -10,5 +10,5 @@ public interface StaffMapper {
 
     List<Staff>selectAll();
     Integer add(Staff staff);
-    Integer userStaffState(Integer stateid,Integer sid);
+    Integer userStaffState(String stateid,String sid);
 }

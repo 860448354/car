@@ -30,8 +30,6 @@
         VALUES(NULL,#{use},#{pwd},#{sid});
     </insert>
 
-    <update id="userStaffState" >
-        UPDATE staff SET sf_state=#{stateid} WHERE sf_id=#{sid}
-    </update>
+
 
 </mapper>
