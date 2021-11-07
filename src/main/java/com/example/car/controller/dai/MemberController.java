@@ -19,7 +19,7 @@ public class MemberController {
     public PageInfo<Member> selectBySearch(@ModelAttribute Member member,
                                            Integer pageNo,
                                            Integer pageSize){
-        PageInfo<Member> pageQuery=services.SelectByChoose(pageNo,pageSize,member);
+        PageInfo<Member> pageQuery=services.selectByChoose(pageNo,pageSize,member);
         return pageQuery;
     }
 }

@@ -20,7 +20,7 @@
                <result column="cr_time" property="crTime"/>
            </association>
        </resultMap>
-    <select id="SelectByChoose" resultMap="menberResult">
+    <select id="selectByChoose" resultMap="menberResult">
         select m.mem_id,
                (CASE m.mem_grade
                     WHEN  0 THEN '普通会员'

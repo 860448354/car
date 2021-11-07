@@ -30,8 +30,46 @@
     <select id="findCommBySupplierName" resultType="com.example.car.model.pojos.hyj.Comm">
         select * from comm where supplier_name = #{supplierName}
     </select>
-    <insert id="addPur" parameterType="com.example.car.model.pojos.hyj.Purchase" useGeneratedKeys="true" keyProperty="purId">
+    <!--新增订单-->
+    <insert id="addPur" keyProperty="purId" parameterType="com.example.car.model.pojos.hyj.Purchase" useGeneratedKeys="true">
         insert into purchase(pur_order,supplier_name,store_name,pur_time,sf_name,pur_per,audit_time,pur_money,pur_remark,pur_name)
         values(#{purOrder},#{supplierName},#{storeName},#{purTime},#{sfName},#{purPer},#{auditTime},#{purMoney},#{purRemark},#{purName})
     </insert>
+    <!--新增订单详表-->
+    <insert id="addPurXq">
+        insert into pur_xq(supplier_name,comm_name,comm_spe,comm_car,comm_unit,comm_money,comm_num,pur_id)
+        values  
+        <foreach collection="list" separator="," item="o">
+            (#{o.supplierName},#{o.commName},#{o.commSpe},#{o.commCar},#{o.commUnit},#{o.commMoney},#{o.commNum},#{purId})
+        </foreach>
+    </insert>
+    <resultMap id="purchase" type="com.example.car.model.pojos.hyj.Purchase">
+        <id property="purId" column="pur_id"/>
+        <result property="purOrder" column="pur_order"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="storeName" column="store_name"/>
+        <result property="purTime" column="pur_time"/>
+        <result property="sfName" column="sf_name"/>
+        <result property="purPer" column="pur_per"/>
+        <result property="auditTime" column="audit_time"/>
+        <result property="purMoney" column="pur_money"/>
+        <result property="purRemark" column="pur_remark"/>
+        <result property="purName" column="pur_name"/>
+        <collection property="purXq" ofType="com.example.car.model.pojos.hyj.PurXq">
+            <id property="purXqId" column="pur_xq_id"/>
+            <result property="supplierName" column="supplier_name"/>
+            <result property="commName" column="comm_name"/>
+            <result property="commSpe" column="comm_spe"/>
+            <result property="commCar" column="comm_car"/>
+            <result property="commUnit" column="comm_unit"/>
+            <result property="commMoney" column="comm_money"/>
+            <result property="commNum" column="comm_num"/>
+            <result property="purId" column="pur_id"/>
+        </collection>
+    </resultMap>
+    <!--查询所有订单-->
+    <select id="findTable" resultMap="purchase">
+        select * from purchase pur inner join pur_xq px
+        on pur.pur_id = px.pur_id
+    </select>
 </mapper>

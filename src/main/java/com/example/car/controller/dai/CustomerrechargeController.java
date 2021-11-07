@@ -35,12 +35,11 @@ public class CustomerrechargeController {
     public MyResult updatebyms(@RequestBody Member member){
         Integer charges=services.updayeByMeony(member);
         System.out.println("this is id?"+member);
-        return MyResult.SUCCESS_Object(services.getClass());
+        return MyResult.SUCCESS_Object(charges.getClass());
     }
     /*查询充值余额记录*/
     @GetMapping("selectall/{id}")
     public List<Customerrecharge> selectAlls(@PathVariable("id") Integer id){
-
         return services.selectAll(id);
     }
 }
