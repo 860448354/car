@@ -20,6 +20,7 @@ public class MaintenanceDispatching {
          private  String dispatchingState;
          private Date dispatchingTime;
          private BigDecimal moneyMaint;
+         private BigDecimal materialCost;
          private Customer customer;
          private CarMessage carMessage;
          private Staff staff;
