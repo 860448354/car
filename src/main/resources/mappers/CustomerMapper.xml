@@ -25,12 +25,27 @@
     <selectKey keyProperty="crId" order="AFTER" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </selectKey>
-        insert into customer values (#{crId},#{crName},#{crPhone},#{crIdNumber},#{crSex},#{crTime},1)
+        insert into customer values (#{crId},#{crName},#{crPhone},#{crIdNumber},#{crSex},#{crTime},0,1)
     </insert>
 
     <!--分页查询客户和车辆-->
     <select id="selectCustAndCarList" resultMap="cust">
-        select <include refid="carAndCust"></include>  from  customer cr inner join car_message car on cr.cr_id = car.customer_car_id where cr.isdelete = 1
+        select <include refid="carAndCust"></include>  from  customer cr inner join car_message car on cr.cr_id = car.customer_car_id
+    <where>
+        <if test="carCustVo.crName != null and carCustVo.crName != ''">
+            and cr.cr_name like concat('%',#{carCustVo.crName},'%')
+        </if>
+        <if test="carCustVo.crPhone != null and carCustVo.crPhone != ''">
+            and cr.cr_phone = #{carCustVo.crPhone}
+        </if>
+        <if test="carCustVo.crIdNumber != null and carCustVo.crIdNumber != ''">
+            and cr.cr_id_number = #{carCustVo.crIdNumber}
+        </if>
+        <if test="carCustVo.crSex != null and carCustVo.crSex != ''">
+            and cr.cr_sex = #{carCustVo.crSex}
+        </if>
+    </where>
+                and  cr.isdelete = 1
     </select>
 
     <!--查询所有-->

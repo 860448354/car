@@ -22,6 +22,7 @@ public class Customer implements Serializable {
     private String crIdNumber;//客户身份证号
     private String crSex;//客户性别
     private Date crTime;//登记时间
+    private String crMember;
 
     private List<CarMessage> crCar; //客户车辆关系字段
     private List<MaintenanceDispatching> maintenanceDispatchingSust;
