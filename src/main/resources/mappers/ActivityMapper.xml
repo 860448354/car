@@ -4,10 +4,54 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.dai.ActivityMapper">
         <resultMap id="activityResult" type="Activity">
-            <id column="" property=""></id>
-            <result column="" property=""></result>
-            <result column="" property=""></result>
-            <result column="" property=""></result>
-            <result column="" property=""></result>
+            <id column="acti_id" property="actiId"></id>
+            <result column="acti_name" property="actiName"></result>
+            <result column="acti_site" property="actiSite"></result>
+            <result column="acti_peoplesum" property="actiPeoplesum"></result>
+            <result column="acti_state" property="actiState"></result>
+            <result column="acti_time" property="actiTime"></result>
+            <association property="typId" javaType="com.example.car.model.pojos.dai.Activitytype">
+                <id column="atype_id" property="atypeId"></id>
+                <result column="atype_name" property="atypeName"></result>
+            </association>
+            <association property="activityUid" javaType="com.example.car.model.pojos.kj.User">
+                <id column="u_id" property="uId"></id>
+                <result column="u_account" property="uAccount"></result>
+            </association>
+            <association property="activityEmpid" javaType="com.example.car.model.pojos.kj.Staff">
+                <id column="sf_id" property="sfId"></id>
+                <result column="sf_name" property="sfName"></result>
+            </association>
+            <collection property="actipar" ofType="com.example.car.model.pojos.dai.Actparticipants">
+                <id column="pan_id" property="panId"></id>
+            </collection>
         </resultMap>
+    <insert id="insterAllActvity" parameterType="com.example.car.model.pojos.dai.Activity">
+        <selectKey keyProperty="actiId" order="AFTER" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+        </selectKey>
+      insert into activity(acti_id,acti_name,acti_site,acti_time,acti_state,acti_hhdid,acti_cjtid )
+      values (#{actiId},#{actiName},#{actiSite},#{actiTime},#{actiState},
+              #{typId.atypeId},#{activityUid.uId})
+    </insert>
+
+    <insert id="insterByMember" parameterType="com.example.car.model.pojos.dai.Actparticipants">
+       insert into actparticipants(pan_id,hh_id,mem_id)
+            values
+                   (#{panId},#{panActId.actiId},#{panMemId.crId})
+    </insert>
+
+    <select id="selectByChoose" resultMap="activityResult">
+        select a.acti_id, a.acti_name, a.acti_site, a.acti_time,
+               (CASE a.acti_state
+                    WHEN  0 THEN '未开始'
+                    WHEN  1 THEN '已开始'
+                    WHEN  2 THEN '已结束'
+                    ELSE 'null' END) AS 'acti_state',
+               a.acti_hhdid, a.acti_cjtid,u.sf_name,c.atype_name
+        from activity a
+                 left join  activitytype c on a.acti_hhdid=c.atype_id
+                 left join  staff u on u.sf_id=a.acti_cjtid
+        order  by a.acti_id desc
+    </select>
 </mapper>
