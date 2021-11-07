@@ -10,20 +10,16 @@ import java.util.List;
  * 客户接口
  */
 @Mapper
-public interface CustomerMapper {
+public interface CostomerMapper {
 
     /** 新增客户
      * @param carCustVo 客户车辆vo
      * @return
      */
     Integer insertCostomer(CarCustVo carCustVo);
-
-
-    /** 查询所有车辆和客户
-     * @return
-     */
-    List<Customer> selectCustAndCarList();
-
-
+    /*
+    * 查询所有客户信息
+    * */
+    List<Customer> selectAll();
 
 }

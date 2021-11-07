@@ -2,24 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.car.model.dao.czh.CustomerMapper">
-    <resultMap id="cust" type="Customer">
-        <id column="cr_id" property="crId"></id>
-        <result column="cr_id_number" property="crIdNumber"></result>
-        <result column="cr_name" property="crName"></result>
-        <result column="cr_phone" property="crPhone"></result>
-        <result column="cr_sex" property="crSex"></result>
-        <result column="cr_time" property="crTime"></result>
-        <collection property="crCar" ofType="CarMessage">
-            <id column="car_message_id" property="carMessageId"></id>
-            <result column="car_number" property="carNumber"></result>
-            <result column="car_type" property="carType"></result>
-            <result column="car_state" property="carState"></result>
-        </collection>
-     </resultMap>
-        <sql id="carAndCust">
-            cr.cr_id,cr.cr_id_number,cr.cr_name,cr.cr_phone,cr.cr_sex,cr.cr_time,car.car_message_id,car.car_number,car.car_type,car.car_state
-        </sql>
+<mapper namespace="com.example.car.model.dao.czh.CostomerMapper">
+
     <!--新增客户信息-->
     <insert id="insertCostomer">
     <selectKey keyProperty="crId" order="AFTER" resultType="java.lang.Integer">
@@ -27,15 +11,5 @@
     </selectKey>
         insert into customer values (#{crId},#{crName},#{crPhone},#{crIdNumber},#{crSex},#{crTime})
     </insert>
-
-    <!--分页查询客户和车辆-->
-    <select id="selectCustAndCarList" resultMap="cust">
-        select <include refid="carAndCust"></include>  from  customer cr inner join car_message car on cr.cr_id = car.customer_car_id
-    </select>
-
-    <!--查询所有-->
-    <select id="selectCustAll" resultType="Customer">
-        select * from customer
-    </select>
 
 </mapper>

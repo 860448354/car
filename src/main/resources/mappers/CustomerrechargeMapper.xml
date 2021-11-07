@@ -8,6 +8,7 @@
         <result property="chargeTime" column="charge_time"></result>
         <result property="chargeMenoy" column="charge_menoy"></result>
         <result property="chargeBalance" column="charge_balance"></result>
+
         <association property="chargeKhid" javaType="com.example.car.model.pojos.czh.Customer">
             <id column="cr_id" property="crId"/>
             <result column="cr_name" property="crName"/>
@@ -25,6 +26,14 @@
     </insert>
     <!--修改-->
     <update id="updayeByMeony" parameterType="com.example.car.model.pojos.dai.Member">
-        update member set mem_balance=#{mem_balance} where mem_id=#{memId}
+        update member set mem_balance=#{memBalance},
+                          mem_balancedsum=#{memBalancedsum},
+                          mem_grade=#{memGrade}
+                          where mem_id=#{memId}
     </update>
+    <!--查询会员的充值记录-->
+    <select id="selectAll" resultType="com.example.car.model.pojos.dai.Customerrecharge">
+        SELECT charge_id,charge_time,charge_menoy,charge_balance,
+               charge_khid FROM customerrecharge WHERE charge_khid=#{id}
+    </select>
 </mapper>
