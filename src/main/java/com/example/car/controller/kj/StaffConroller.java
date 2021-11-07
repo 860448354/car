@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/staff")
 public class StaffConroller {
@@ -33,6 +35,13 @@ public class StaffConroller {
         MyResult myResult = staffServices.staffUpdate(sid, stateid);
         return myResult;
 
+    }
+
+
+    @GetMapping("selectDp")
+    public List<Staff> selectByDp(){
+        List<Staff> list = staffServices.selctListDpId();
+        return list;
     }
 
 }

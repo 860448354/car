@@ -11,4 +11,7 @@ public interface StaffMapper {
     List<Staff>selectAll();
     Integer add(Staff staff);
     Integer userStaffState(String stateid,String sid);
+
+    /*查询维修部们员工*/
+    List<Staff> selectSta();
 }

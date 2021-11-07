@@ -51,4 +51,8 @@
 
 
     </resultMap>
+
+    <select id="selectSta" resultType="Staff">
+        select s.sf_id,s.sf_name from staff s where s.sf_dpid = 4
+    </select>
 </mapper>
