@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * 车辆信息实体类
  */
@@ -18,4 +20,5 @@ public class CarMessage {
     private String carState; // 车辆状态
 
     private Customer carCust; // 客户车辆关系字段
+    private List<MaintenanceDispatching> maintenanceDispatchingCar;
 }

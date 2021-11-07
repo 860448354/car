@@ -25,5 +25,16 @@ public interface CustomerMapper {
     List<Customer> selectCustAndCarList();
 
 
+    /** 查询所有客户信息
+     * @return
+     */
+    List<Customer> selectCustAll();
+
+
+    /** 删除客户
+     * @param crid
+     * @return
+     */
+    Integer updateCust(int crid);
 
 }

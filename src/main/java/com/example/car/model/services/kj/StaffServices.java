@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class StaffServices {
@@ -45,5 +47,20 @@ public class StaffServices {
         System.out.println("新增id"+staff.getSfId());
 
         return add>0?MyResult.SUCCESS:MyResult.FAILURE("新增失败");
+    }
+
+    /** 根据用户 id 修改用户状态
+     * @param sid
+     * @param stateid
+     * @return
+     */
+    public MyResult staffUpdate(String sid,String stateid){
+        Integer integer = staffMapper.userStaffState(stateid, sid);
+        return integer>0?MyResult.SUCCESS:MyResult.FAILURE("更新失败");
+    }
+
+    public List<Staff> selctListDpId(){
+        List<Staff> list = staffMapper.selectSta();
+        return list;
     }
 }

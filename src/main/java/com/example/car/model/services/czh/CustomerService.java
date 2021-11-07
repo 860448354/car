@@ -54,4 +54,9 @@ public class CustomerService{
 
     }
 
+    public Integer deleteCust(int crId){
+       int i =  customerMapper.updateCust(crId);
+        return i;
+    }
+
 }
