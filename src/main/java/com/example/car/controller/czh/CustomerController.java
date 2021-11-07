@@ -47,4 +47,14 @@ public class CustomerController {
         return page;
 
     }
+
+    /** 删除客户
+     * @param crId
+     * @return
+     */
+    @GetMapping("deleteCust")
+    public Integer delectCs(@RequestParam("crId")Integer crId){
+        int i = customerService.deleteCust(crId);
+        return i;
+    }
 }

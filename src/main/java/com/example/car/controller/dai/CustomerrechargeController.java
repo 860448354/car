@@ -25,7 +25,8 @@ public class CustomerrechargeController {
                 customerrecharge.getChargeTime(),
                 customerrecharge.getChargeMenoy(),
                 customerrecharge.getChargeBalance(),
-                customerrecharge.getChargeKhid()
+                customerrecharge.getChargeKhid(),
+                customerrecharge.getChargeUserid()
         );
         Integer charges=services.insterAll(charge);
         return MyResult.SUCCESS_Object(services.getClass());

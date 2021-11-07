@@ -1,6 +1,11 @@
 package com.example.car.model.pojos.dai;
 
+import com.example.car.model.pojos.kj.Staff;
+import com.example.car.model.pojos.kj.User;
+
 import java.sql.Timestamp;
+import java.util.List;
+
 /* 活动表*/
 public class Activity {
     private Integer actiId;/*编号*/
@@ -8,7 +13,12 @@ public class Activity {
     private String actiSite;/*活动地点*/
     private Integer actiPeoplesum;/*参与人数*/
     private Timestamp actiTime;/*活动日期*/
-    /*private Integer actiId;活动类型外键*/
+    private String actiState;/*活动状态*/
+    private Activitytype typId;/*活动类型外键*/
+    private User activityUid;/*角色外键*/
+    private Staff activityEmpid;/*员工外键*/
+    private List<Actparticipants> actipar;/*活动参与人员*/
+
 
     @Override
     public String toString() {
@@ -18,7 +28,51 @@ public class Activity {
                 ", actiSite='" + actiSite + '\'' +
                 ", actiPeoplesum=" + actiPeoplesum +
                 ", actiTime=" + actiTime +
+                ", actiState='" + actiState + '\'' +
+                ", typId=" + typId +
+                ", activityUid=" + activityUid +
+                ", activityEmpid=" + activityEmpid +
+                ", actipar=" + actipar +
                 '}';
+    }
+
+    public String getActiState() {
+        return actiState;
+    }
+
+    public void setActiState(String actiState) {
+        this.actiState = actiState;
+    }
+
+    public Staff getActivityEmpid() {
+        return activityEmpid;
+    }
+
+    public void setActivityEmpid(Staff activityEmpid) {
+        this.activityEmpid = activityEmpid;
+    }
+
+    public List<Actparticipants> getActipar() {
+        return actipar;
+    }
+    public void setActipar(List<Actparticipants> actipar) {
+        this.actipar = actipar;
+    }
+
+    public User getActivityUid() {
+        return activityUid;
+    }
+
+    public void setActivityUid(User activityUid) {
+        this.activityUid = activityUid;
+    }
+
+    public Activitytype getTypId() {
+        return typId;
+    }
+
+    public void setTypId(Activitytype typId) {
+        this.typId = typId;
     }
 
     public Integer getActiId() {

@@ -48,10 +48,15 @@ public class CustomerService{
 
         PageHelper.startPage(carCustVo.getPageNo(),carCustVo.getPageSize());
 
-        List<Customer> list = customerMapper.selectCustAndCarList();
+        List<Customer> list = customerMapper.selectCustAndCarList(carCustVo);
 
         return PageInfo.of(list);
 
+    }
+
+    public Integer deleteCust(int crId){
+       int i =  customerMapper.updateCust(crId);
+        return i;
     }
 
 }

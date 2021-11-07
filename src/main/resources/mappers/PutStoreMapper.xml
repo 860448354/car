@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.hyj.PutStoreMapper">
+    <resultMap id="purchase" type="com.example.car.model.pojos.hyj.Purchase">
+        <id property="purId" column="pur_id"/>
+        <result property="purOrder" column="pur_order"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="storeName" column="store_name"/>
+        <result property="purTime" column="pur_time"/>
+        <result property="sfName" column="sf_name"/>
+        <result property="purPer" column="pur_per"/>
+        <result property="auditTime" column="audit_time"/>
+        <result property="purMoney" column="pur_money"/>
+        <result property="purRemark" column="pur_remark"/>
+        <result property="purName" column="pur_name"/>
+        <result property="purState" column="pur_state"/>
+        <collection property="purXq" ofType="com.example.car.model.pojos.hyj.PurXq">
+            <id property="purXqId" column="pur_xq_id"/>
+            <result property="supplierName" column="supplier_name"/>
+            <result property="commName" column="comm_name"/>
+            <result property="commSpe" column="comm_spe"/>
+            <result property="commCar" column="comm_car"/>
+            <result property="commUnit" column="comm_unit"/>
+            <result property="commMoney" column="comm_money"/>
+            <result property="commNum" column="comm_num"/>
+            <result property="purId" column="pur_id"/>
+            <result property="commSNum" column="comm_s_num"/>
+        </collection>
+    </resultMap>
+    <select id="findPurD" resultMap="purchase">
+        select * from purchase pur inner join pur_xq px
+        on pur.pur_id = px.pur_id where pur.pur_state = '待收货'
+    </select>
+    <!--已审核的订单修改为待收货-->
+    <update id="editState">
+        update purchase set pur_state = '待收货' where pur_id = #{purId}
+    </update>
+    <!--新增入库单-->
+    <insert id="addPutStore">
+        insert into put_sto(pur_id,put_sto_time,put_sto_num,put_sto_name)
+        values(#{purId},now(),#{putStoNum},#{putStoName})
+    </insert>
+    <!--修改入库数量-->
+    <update id="editPutStore">
+
+        <foreach collection="list" item="o"  separator=",">
+        update pur_xq
+            <set>
+                comm_s_num = #{o.commSNum}
+            </set>
+        where pur_id = #{o.purId}
+        </foreach>
+    </update>
+    <!--入库后修改状态-->
+    <update id="editPutStoreState">
+        update purchase set pur_state = '已收货' where pur_id = #{purId}
+    </update>
+</mapper>

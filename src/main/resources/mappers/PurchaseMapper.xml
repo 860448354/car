@@ -37,10 +37,10 @@
     </insert>
     <!--新增订单详表-->
     <insert id="addPurXq">
-        insert into pur_xq(supplier_name,comm_name,comm_spe,comm_car,comm_unit,comm_money,comm_num,pur_id)
+        insert into pur_xq(supplier_name,comm_name,comm_spe,comm_car,comm_unit,comm_money,comm_num,comm_s_num,pur_id)
         values  
         <foreach collection="list" separator="," item="o">
-            (#{o.supplierName},#{o.commName},#{o.commSpe},#{o.commCar},#{o.commUnit},#{o.commMoney},#{o.commNum},#{purId})
+            (#{o.supplierName},#{o.commName},#{o.commSpe},#{o.commCar},#{o.commUnit},#{o.commMoney},#{o.commNum},#{o.commNum},#{purId})
         </foreach>
     </insert>
     <resultMap id="purchase" type="com.example.car.model.pojos.hyj.Purchase">
@@ -55,6 +55,7 @@
         <result property="purMoney" column="pur_money"/>
         <result property="purRemark" column="pur_remark"/>
         <result property="purName" column="pur_name"/>
+        <result property="purState" column="pur_state"/>
         <collection property="purXq" ofType="com.example.car.model.pojos.hyj.PurXq">
             <id property="purXqId" column="pur_xq_id"/>
             <result property="supplierName" column="supplier_name"/>
@@ -67,9 +68,14 @@
             <result property="purId" column="pur_id"/>
         </collection>
     </resultMap>
-    <!--查询所有订单-->
+    <!--查询所有待审核的订单-->
     <select id="findTable" resultMap="purchase">
         select * from purchase pur inner join pur_xq px
-        on pur.pur_id = px.pur_id
+        on pur.pur_id = px.pur_id where pur.pur_state = '待审核'
+    </select>
+    <!--查询所有已审核的订单-->
+    <select id="findTable2" resultMap="purchase">
+        select * from purchase pur inner join pur_xq px
+        on pur.pur_id = px.pur_id where pur.pur_state = '已审核'
     </select>
 </mapper>

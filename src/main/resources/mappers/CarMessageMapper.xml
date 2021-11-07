@@ -7,12 +7,15 @@
             <id property="carMessageId" column="car_message_id"></id>
             <result property="carNumber" column="car_number"></result>
             <result property="carType" column="car_type"></result>
+            <association property="carCust" javaType="Customer">
+                <id property="crId" column="cr_id"></id>
+            </association>
         </resultMap>
 
 
     <!--查询所有车辆信息-->
-    <select id="selectAll" resultMap="message">
-        select * from car_message
+    <select id="selectAById" resultMap="message">
+        select cr.cr_id from car_message car inner join customer cr on car.customer_car_id = cr.cr_id  where car_message_id = #{carId}
     </select>
 
     <!--新增车辆信息-->
@@ -20,4 +23,7 @@
         insert into car_message values (null ,#{carId},#{carName},#{CustId},'未维修')
     </insert>
 
+    <update id="updateCar">
+        update car_message set car_state = #{upState} where car_message_id = #{carId}
+    </update>
 </mapper>
