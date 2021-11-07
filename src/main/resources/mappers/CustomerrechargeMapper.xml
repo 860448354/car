@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.dai.CustomerrechargeMapper">
+    <resultMap id="chargeResult" type="Member">
+        <id property="chargeId" column="charge_id"></id>
+        <result property="chargeTime" column="charge_time"></result>
+        <result property="chargeMenoy" column="charge_menoy"></result>
+        <result property="chargeBalance" column="charge_balance"></result>
+
+        <association property="chargeKhid" javaType="com.example.car.model.pojos.czh.Customer">
+            <id column="cr_id" property="crId"/>
+            <result column="cr_name" property="crName"/>
+            <result column="cr_phone" property="crPhone"/>
+            <result column="cr_idNumber" property="crIdNumber"/>
+            <result column="cr_sex" property="crSex"/>
+            <result column="cr_time" property="crTime"/>
+        </association>
+    </resultMap>
+    <!--新增-->
+    <insert id="insterAll" parameterType="com.example.car.model.pojos.dai.Customerrecharge">
+        INSERT INTO customerrecharge(charge_id,charge_time,charge_menoy,charge_balance,
+                                   charge_khid )
+        VALUES(#{chargeId},#{chargeTime},#{chargeMenoy},#{chargeBalance},#{chargeKhid.crId})
+    </insert>
+    <!--修改-->
+    <update id="updayeByMeony" parameterType="com.example.car.model.pojos.dai.Member">
+        update member set mem_balance=#{memBalance},
+                          mem_balancedsum=#{memBalancedsum},
+                          mem_grade=#{memGrade}
+                          where mem_id=#{memId}
+    </update>
+    <!--查询会员的充值记录-->
+    <select id="selectAll" resultType="com.example.car.model.pojos.dai.Customerrecharge">
+        SELECT charge_id,charge_time,charge_menoy,charge_balance,
+               charge_khid FROM customerrecharge WHERE charge_khid=#{id}
+    </select>
+</mapper>

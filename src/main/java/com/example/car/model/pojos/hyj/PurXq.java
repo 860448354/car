@@ -5,10 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Comm {
-    private int commId;
+@AllArgsConstructor
+public class PurXq {
+    private int purXqId;
+    private int purId;
     private String supplierName;
     private String commName;
     private String commSpe;

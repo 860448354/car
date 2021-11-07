@@ -1,10 +1,13 @@
 package com.example.car.model.pojos.hyj;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,5 +24,5 @@ public class Purchase {
     private double purMoney;
     private String purRemark;
     private String purName;
-
+    private List<PurXq> purXq;
 }

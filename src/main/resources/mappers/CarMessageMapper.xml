@@ -10,7 +10,6 @@
         </resultMap>
 
 
-
     <!--查询所有车辆信息-->
     <select id="selectAll" resultMap="message">
         select * from car_message
@@ -18,7 +17,7 @@
 
     <!--新增车辆信息-->
     <insert id="insertMessage">
-        insert into car_message values (null ,#{carNumber},#{carType},#{crId})
+        insert into car_message values (null ,#{carId},#{carName},#{CustId},'未维修')
     </insert>
 
 </mapper>
