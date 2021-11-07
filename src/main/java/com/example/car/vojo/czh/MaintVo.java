@@ -15,4 +15,11 @@ public class MaintVo {
     private Date paiGongTime;
     private String State = "完成派工";
     private Integer crId;
+
+
+
+    private String custName;
+    private String custEmpName;
+    private String custCarId;
+    private String custCarType;
 }

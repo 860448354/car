@@ -30,6 +30,20 @@
                                                  inner join car_message cm on cm.car_message_id = md.car_id
 
                                                  inner join customer cr on cr.cr_id = md.cr_id
+            <where>
+                <if test="maintVo.custName != null and maintVo.custName != ''">
+                    and cr.cr_name like concat('%',#{maintVo.custName},'%')
+                </if>
+                <if test="maintVo.custEmpName != null and maintVo.custEmpName != ''">
+                    and sf.sf_name like concat('%',#{maintVo.custEmpName},'%')
+                </if>
+                <if test="maintVo.custCarId != null and maintVo.custCarId != ''">
+                    and cm.car_number like concat('%',#{maintVo.custCarId},'%')
+                </if>
+                <if test="maintVo.custCarType != null and maintVo.custCarType != ''">
+                    and cm.car_type like concat('%',#{maintVo.custCarType},'%')
+                </if>
+            </where>
     </select>
 
 

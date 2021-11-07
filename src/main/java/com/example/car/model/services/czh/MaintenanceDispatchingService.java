@@ -18,8 +18,8 @@ public class MaintenanceDispatchingService {
     CarMessageMapper carMessageMapper;
 
 
-    public List<MaintenanceDispatching> selectAllMaint(){
-        List<MaintenanceDispatching> list = mapper.selectMaint();
+    public List<MaintenanceDispatching> selectAllMaint(MaintVo maintVo){
+        List<MaintenanceDispatching> list = mapper.selectMaint(maintVo);
         return list;
     }
 
