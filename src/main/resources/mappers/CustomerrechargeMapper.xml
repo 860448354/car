@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.dai.CustomerrechargeMapper">
-    <resultMap id="chargeResult" type="Member">
+    <resultMap id="chargeResult" type="com.example.car.model.pojos.dai.Member">
         <id property="chargeId" column="charge_id"></id>
         <result property="chargeTime" column="charge_time"></result>
         <result property="chargeMenoy" column="charge_menoy"></result>

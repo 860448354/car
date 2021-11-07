@@ -2,18 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.kj.StaffMapper">
+<!--    查所有的员工信息-->
     <select id="selectAll" resultMap="base">
         SELECT * FROM staff sf
         INNER JOIN dept d ON sf.sf_dpid=d.dt_id
         INNER JOIN post p ON sf.sf_ptid=p.pt_id
         INNER JOIN user u ON u.u_sid=sf.sf_id
     </select>
-
+<!--    根据员工信息 修改在职装态-->
     <update id="userStaffState" >
         UPDATE staff SET sf_state=#{stateid} WHERE sf_id=#{sid}
     </update>
 
 
+
+<!--新增员工返回主键-->
     <insert id="add">
 
         <selectKey keyProperty="sfId" order="AFTER" resultType="java.lang.Integer">

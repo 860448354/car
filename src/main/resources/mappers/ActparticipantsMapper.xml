@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.dai.ActparticipantsMapper">
-    <resultMap id="pantsResult" type="Actparticipants">
+    <resultMap id="pantsResult" type="com.example.car.model.pojos.dai.Actparticipants">
          <id property="panId" column="pan_id"></id>
         <association property="panActId" javaType="com.example.car.model.pojos.dai.Activity">
             <id column="acti_id" property="actiId"></id>
