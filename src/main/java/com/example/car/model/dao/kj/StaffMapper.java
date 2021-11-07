@@ -9,7 +9,6 @@ import java.util.List;
 public interface StaffMapper {
 
     List<Staff>selectAll();
-
-    /*查询维修部们员工*/
-    List<Staff> selectSta();
+    Integer add(Staff staff);
+    Integer userStaffState(String stateid,String sid);
 }

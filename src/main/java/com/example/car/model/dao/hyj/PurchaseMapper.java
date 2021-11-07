@@ -15,4 +15,6 @@ public interface PurchaseMapper {
     List<Comm> findCommBySupplierName(Comm c);
     void addPur(Purchase pur);
     void addPurXq(@Param("purId") int purId,@Param("list") List<PurXq> purXq);
+    List<Purchase> findTable();
+    List<Purchase> findTable2();
 }

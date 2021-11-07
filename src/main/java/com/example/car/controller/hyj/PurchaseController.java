@@ -45,4 +45,12 @@ public class PurchaseController {
     public void addPur(@RequestBody Purchase pur){
         purchaseService.addPur(pur);
     }
+    @RequestMapping("findTable")
+    public List<Purchase> findTable(){
+        return purchaseService.findTable();
+    }
+    @RequestMapping("findTable2")
+    public List<Purchase> findTable2(){
+        return purchaseService.findTable2();
+    }
 }

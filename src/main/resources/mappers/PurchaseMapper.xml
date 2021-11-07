@@ -43,4 +43,39 @@
             (#{o.supplierName},#{o.commName},#{o.commSpe},#{o.commCar},#{o.commUnit},#{o.commMoney},#{o.commNum},#{purId})
         </foreach>
     </insert>
+    <resultMap id="purchase" type="com.example.car.model.pojos.hyj.Purchase">
+        <id property="purId" column="pur_id"/>
+        <result property="purOrder" column="pur_order"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="storeName" column="store_name"/>
+        <result property="purTime" column="pur_time"/>
+        <result property="sfName" column="sf_name"/>
+        <result property="purPer" column="pur_per"/>
+        <result property="auditTime" column="audit_time"/>
+        <result property="purMoney" column="pur_money"/>
+        <result property="purRemark" column="pur_remark"/>
+        <result property="purName" column="pur_name"/>
+        <result property="purState" column="pur_state"/>
+        <collection property="purXq" ofType="com.example.car.model.pojos.hyj.PurXq">
+            <id property="purXqId" column="pur_xq_id"/>
+            <result property="supplierName" column="supplier_name"/>
+            <result property="commName" column="comm_name"/>
+            <result property="commSpe" column="comm_spe"/>
+            <result property="commCar" column="comm_car"/>
+            <result property="commUnit" column="comm_unit"/>
+            <result property="commMoney" column="comm_money"/>
+            <result property="commNum" column="comm_num"/>
+            <result property="purId" column="pur_id"/>
+        </collection>
+    </resultMap>
+    <!--查询所有待审核的订单-->
+    <select id="findTable" resultMap="purchase">
+        select * from purchase pur inner join pur_xq px
+        on pur.pur_id = px.pur_id where pur.pur_state = '待审核'
+    </select>
+    <!--查询所有已审核的订单-->
+    <select id="findTable2" resultMap="purchase">
+        select * from purchase pur inner join pur_xq px
+        on pur.pur_id = px.pur_id where pur.pur_state = '已审核'
+    </select>
 </mapper>

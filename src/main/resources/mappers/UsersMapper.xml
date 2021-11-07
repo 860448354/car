@@ -3,7 +3,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.kj.UserMapper">
 <!--    查询账户密码-->
-    <select id="selectLogin" resultType="com.example.car.model.pojos.kj.User">
-        SELECT * FROM user WHERE u_account=#{use} AND u_pwd=#{pwd}
+    <select id="selectLogin" resultMap="base" >
+        SELECT * FROM user u
+        INNER JOIN staff sf ON u.u_sid=sf.sf_id
+        WHERE u_account=#{use} AND u_pwd=#{pwd}
+          AND sf.sf_state=1
     </select>
+
+    <resultMap id="base" type="com.example.car.model.pojos.kj.User">
+        <id column="u_id" property="uId"/>
+        <result column="u_account" property="uAccount"/>
+        <result column="u_pwd" property="uPwd"/>
+        <result column="u_usid" property="uSid"/>
+
+        <association property="myStaff" javaType="com.example.car.model.pojos.kj.Staff">
+            <id column="sf_id" property="sfId"/>
+            <result column="sf_name" property="sfName" />
+            <result column="sf_phone" property="sfPhone" />
+            <result column="sf_card" property="sfCard" />
+            <result column="sf_state" property="sfState" />
+        </association>
+    </resultMap>
+
+    <insert id="userAdd">
+        INSERT INTO `user` (`u_id`, `u_account`, `u_pwd`, `u_sid`)
+        VALUES(NULL,#{use},#{pwd},#{sid});
+    </insert>
+
+
+
 </mapper>
