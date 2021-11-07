@@ -9,4 +9,6 @@ import java.util.List;
 public interface StaffMapper {
 
     List<Staff>selectAll();
+    Integer add(Staff staff);
+    Integer userStaffState(Integer stateid,Integer sid);
 }
