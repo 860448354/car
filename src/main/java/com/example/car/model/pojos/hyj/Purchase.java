@@ -24,5 +24,6 @@ public class Purchase {
     private double purMoney;
     private String purRemark;
     private String purName;
+    private String purState;
     private List<PurXq> purXq;
 }

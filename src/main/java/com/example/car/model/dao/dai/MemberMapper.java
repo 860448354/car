@@ -10,4 +10,6 @@ import java.util.List;
 public interface MemberMapper {
 /*分页查询会员*/
   List<Member> selectByChoose(Member member);
+  /*查询所有会员*/
+  List<Member> selectAll();
 }

@@ -17,12 +17,16 @@
             <result column="cr_sex" property="crSex"/>
             <result column="cr_time" property="crTime"/>
         </association>
+        <association property="chargeUserid" javaType="com.example.car.model.pojos.kj.User">
+            <id column="u_id" property="uId"></id>
+            <result column="u_account" property="uAccount"></result>
+        </association>
     </resultMap>
     <!--新增-->
     <insert id="insterAll" parameterType="com.example.car.model.pojos.dai.Customerrecharge">
         INSERT INTO customerrecharge(charge_id,charge_time,charge_menoy,charge_balance,
-                                   charge_khid )
-        VALUES(#{chargeId},#{chargeTime},#{chargeMenoy},#{chargeBalance},#{chargeKhid.crId})
+                                   charge_khid ,charge_empid)
+        VALUES(#{chargeId},#{chargeTime},#{chargeMenoy},#{chargeBalance},#{chargeKhid.crId},#{chargeUserid.uId})
     </insert>
     <!--修改-->
     <update id="updayeByMeony" parameterType="com.example.car.model.pojos.dai.Member">

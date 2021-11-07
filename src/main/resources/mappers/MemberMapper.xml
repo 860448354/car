@@ -20,6 +20,7 @@
                <result column="cr_time" property="crTime"/>
            </association>
        </resultMap>
+    <!--分页查询-->
     <select id="selectByChoose" resultMap="menberResult">
         select m.mem_id,
                (CASE m.mem_grade
@@ -35,5 +36,20 @@
             </if>
         </where>
         order by m.mem_id desc
+    </select>
+    <!--查询所有-->
+    <select id="selectAll" resultMap="menberResult">
+        select m.mem_id,
+               (CASE m.mem_grade
+                    WHEN  0 THEN '普通会员'
+                    WHEN  1 THEN '钻石会员'
+                    WHEN  2 THEN '超级会员'
+                    ELSE 'null' END) AS 'mem_grade', m.mem_balance, m.mem_time, m.mem_sum, m.mem_integral,
+                     m.mem_balancedsum ,c.cr_name
+                    from member m
+                        left join customer c
+                            on m.mem_khid=c.cr_id
+        order by m.mem_id desc
+
     </select>
 </mapper>
