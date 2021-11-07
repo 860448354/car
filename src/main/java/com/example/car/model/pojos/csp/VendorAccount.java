@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class VendorAccount {
     private int vendorId;
+    private String supplierName;
     private Date vendorDate;
     private double vendorDue;
     private double vendorReceived;
@@ -15,7 +16,6 @@ public class VendorAccount {
     private String vendorEnter;
     private String vendorType;
     private Purchase purchase;
-    private Supplier supplier;
     private Staff staff;
 
     public int getVendorId() {
@@ -24,6 +24,14 @@ public class VendorAccount {
 
     public void setVendorId(int vendorId) {
         this.vendorId = vendorId;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public Date getVendorDate() {
@@ -80,14 +88,6 @@ public class VendorAccount {
 
     public void setPurchase(Purchase purchase) {
         this.purchase = purchase;
-    }
-
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
     }
 
     public Staff getStaff() {
