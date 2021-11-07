@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.csp.VendorAccountMapper">
+    <resultMap id="purchaseMap" type="com.example.car.model.pojos.hyj.Purchase">
+        <id property="purId" column="pur_id"/>
+        <result property="purOrder" column="pur_order"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="storeName" column="store_name"/>
+        <result property="purTime" column="pur_time"/>
+        <result property="sfName" column="sf_name"/>
+        <result property="purPer" column="pur_per"/>
+        <result property="auditTime" column="audit_time"/>
+        <result property="purMoney" column="pur_money"/>
+        <result property="purRemark" column="pur_remark"/>
+        <result property="purName" column="pur_name"/>
+        <result property="purState" column="pur_state"/>
+        <collection property="purXq" ofType="com.example.car.model.pojos.hyj.PurXq">
+            <id property="purXqId" column="pur_xq_id"/>
+            <result property="supplierName" column="supplier_name"/>
+            <result property="commName" column="comm_name"/>
+            <result property="commSpe" column="comm_spe"/>
+            <result property="commCar" column="comm_car"/>
+            <result property="commUnit" column="comm_unit"/>
+            <result property="commMoney" column="comm_money"/>
+            <result property="commNum" column="comm_num"/>
+            <result property="purId" column="pur_id"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="vendorAccountMap" type="com.example.car.model.pojos.csp.VendorAccount">
+        <id property="vendorId" column="vendor_id"/>
+        <result property="purOrder" column="pur_order"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="vendorDate" column="vendor_date"/>
+        <result property="vendorDue" column="vendor_due"/>
+        <result property="vendorReceived" column="vendor_received"/>
+        <result property="vendorCoupon" column="vendor_coupon"/>
+        <result property="vendorEnter" column="vendor_enter"/>
+        <result property="vendorType" column="vendor_type"/>
+        <association property="purchase" javaType="com.example.car.model.pojos.hyj.Purchase">
+            <id property="purId" column="pur_id"/>
+            <result property="purOrder" column="pur_order"/>
+            <result property="supplierName" column="supplier_name"/>
+            <result property="storeName" column="store_name"/>
+            <result property="purTime" column="pur_time"/>
+            <result property="sfName" column="sf_name"/>
+            <result property="purPer" column="pur_per"/>
+            <result property="auditTime" column="audit_time"/>
+            <result property="purMoney" column="pur_money"/>
+            <result property="purRemark" column="pur_remark"/>
+            <result property="purName" column="pur_name"/>
+            <result property="purState" column="pur_state"/>
+            <collection property="purXq" ofType="com.example.car.model.pojos.hyj.PurXq">
+                <id property="purXqId" column="pur_xq_id"/>
+                <result property="supplierName" column="supplier_name"/>
+                <result property="commName" column="comm_name"/>
+                <result property="commSpe" column="comm_spe"/>
+                <result property="commCar" column="comm_car"/>
+                <result property="commUnit" column="comm_unit"/>
+                <result property="commMoney" column="comm_money"/>
+                <result property="commNum" column="comm_num"/>
+                <result property="purId" column="pur_id"/>
+            </collection>
+        </association>
+        <association property="staff" javaType="com.example.car.model.pojos.kj.Staff">
+            <id column="sf_id" property="sfId"/>
+            <result column="sf_name" property="sfName" />
+        </association>
+    </resultMap>
+
+    <!--查询未审核结算的采购订单-->
+    <select id="selPurchase" resultMap="purchaseMap">
+        select * from purchase pur inner join pur_xq px
+               on pur.pur_id = px.pur_id
+        <where>
+            <if test="supplierName != null and '' != supplierName">
+                pur.supplier_name like '%${supplierName}%'
+            </if>
+        </where>
+        and pur.pur_state = '待审核'
+    </select>
+
+    <!--新增供货商结算单-->
+    <insert id="addVendorAccount">
+        insert into vendor_account values (0,#{purOrder},#{supplierName},current_timestamp ,#{vendorDue},
+                                           #{vendorReceived},#{vendorCoupon},#{vendorEnter},#{vendorType},#{sfId})
+    </insert>
+
+    <!--修改采购订单状态-->
+    <update id="editPurchase">
+        update purchase
+        set pur_state = '待收货',pur_per = #{sfName}
+        where pur_order = #{purOrder};
+    </update>
+
+    <!--查询供货商往来账-->
+    <select id="selVendorAccount" resultMap="vendorAccountMap">
+        select * from vendor_account va
+            left join purchase pur on va.pur_order = pur.pur_order
+            left join pur_xq px on pur.pur_id = px.pur_id
+            left join staff sf on va.sf_id = sf.sf_id
+        <where>
+            <if test="start != null and '' != start and end != null and '' != end">
+                date_format(va.vendor_date,'%Y-%m-%d %H:%i:%s') between #{start} and #{end}
+            </if>
+            <if test="supplierName != null and '' != supplierName">
+                and va.supplier_name like '%${supplierName}%'
+            </if>
+        </where>
+    </select>
+</mapper>

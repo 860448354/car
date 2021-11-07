@@ -1,5 +1,6 @@
 package com.example.car.controller.dai;
 
+import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.pojos.dai.Member;
 import com.example.car.model.services.dai.MemberServices;
 import com.github.pagehelper.PageInfo;
@@ -28,5 +29,21 @@ public class MemberController {
     @GetMapping("selectall")
     public List<Member> selectAllMem(){
         return services.selectAll();
+    }
+    /*分页*/
+    @GetMapping("searches")
+    public PageInfo<Customer> selectBySearches(@ModelAttribute Customer customer,
+                                           Integer pageNo,
+                                           Integer pageSize){
+        PageInfo<Customer> pageQuery=services.selectByChooseCus(pageNo,pageSize,customer);
+        return pageQuery;
+    }
+    /*新增会员*/
+    @PostMapping("inster")
+    public Integer insterAll(@RequestBody Member member){
+        Integer ins=services.insterAll(member);
+        Integer inn= services.updataByMem(member.getCrId().getCrId());
+        System.out.println("this is"+member.getCrId().getCrId());
+        return ins;
     }
 }
