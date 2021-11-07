@@ -38,4 +38,12 @@ public class MemberController {
         PageInfo<Customer> pageQuery=services.selectByChooseCus(pageNo,pageSize,customer);
         return pageQuery;
     }
+    /*新增会员*/
+    @PostMapping("inster")
+    public Integer insterAll(@RequestBody Member member){
+        Integer ins=services.insterAll(member);
+        Integer inn= services.updataByMem(member.getCrId().getCrId());
+        System.out.println("this is"+member.getCrId().getCrId());
+        return ins;
+    }
 }

@@ -34,4 +34,16 @@ public class MemberServices {
         List<Customer> list = mapper.selectByChooseCus(customer);/*调用查询方法*/
         return new PageInfo<>(list);/*将查询结果封装到PageInfo对象中*/
     }
+    /*新增会员*/
+    public Integer insterAll(Member member){
+        return mapper.insterAll(member);
+    }
+    /*修改非会员*/
+    public Integer updataByMem(Integer id){
+        return mapper.updataByMem(id);
+    }
+    /*修改客户信息*/
+    public Integer updataByCustomer(Customer customer){
+        return mapper.updataByCustomer(customer);
+    }
 }

@@ -15,4 +15,10 @@ public interface MemberMapper {
   List<Member> selectAll();
   /*分页查询所有员工*/
   List<Customer> selectByChooseCus(Customer customer);
+  /*新增会员*/
+  Integer insterAll(Member member);
+  /*修改非会员*/
+  Integer updataByMem(Integer id);
+  /*修改客户信息*/
+  Integer updataByCustomer(Customer customer);
 }
