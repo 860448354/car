@@ -26,4 +26,12 @@
     <select id="findCaiGou" resultType="com.example.car.model.pojos.kj.Staff">
         select * from staff where sf_state = 1 and sf_ptid = 8
     </select>
+    <!--根据供货商名称查询其供货配件-->
+    <select id="findCommBySupplierName" resultType="com.example.car.model.pojos.hyj.Comm">
+        select * from comm where supplier_name = #{supplierName}
+    </select>
+    <insert id="addPur" parameterType="com.example.car.model.pojos.hyj.Purchase" useGeneratedKeys="true" keyProperty="purId">
+        insert into purchase(pur_order,supplier_name,store_name,pur_time,sf_name,pur_per,audit_time,pur_money,pur_remark,pur_name)
+        values(#{purOrder},#{supplierName},#{storeName},#{purTime},#{sfName},#{purPer},#{auditTime},#{purMoney},#{purRemark},#{purName})
+    </insert>
 </mapper>

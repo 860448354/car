@@ -3,21 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.dai.MemberMapper">
-       <resultMap id="menberresult" type="Member">
-           <id property="memId" column="memId"></id>
-           <result property="memGrade" column="memGrade"></result>
-           <result property="memBalance" column="memBalance"></result>
-           <result property="memTime" column="memTime"></result>
-           <result property="memSum" column="memSum"></result>
-           <result property="memIntegral" column="memIntegral"></result>
+       <resultMap id="menberResult" type="Member">
+           <id property="memId" column="mem_id"></id>
+           <result property="memGrade" column="mem_grade"></result>
+           <result property="memBalance" column="mem_balance"></result>
+           <result property="memTime" column="mem_time"></result>
+           <result property="memSum" column="mem_sum"></result>
+           <result property="memIntegral" column="mem_integral"></result>
+           <result property="memBalancedsum" column="mem_balancedsum"></result>
            <association property="crId" javaType="com.example.car.model.pojos.czh.Customer">
-               <id column="crId" property="crId"/>
-               <result column="crName" property="crName"/>
-               <result column="crPhone" property="crPhone"/>
-               <result column="crIdNumber" property="crIdNumber"/>
-               <result column="crSex" property="crSex"/>
-               <result column="crTime" property="crTime"/>
+               <id column="cr_id" property="crId"/>
+               <result column="cr_name" property="crName"/>
+               <result column="cr_phone" property="crPhone"/>
+               <result column="cr_idNumber" property="crIdNumber"/>
+               <result column="cr_sex" property="crSex"/>
+               <result column="cr_time" property="crTime"/>
            </association>
        </resultMap>
-
+    <select id="SelectByChoose" resultMap="menberResult">
+        select m.mem_id,
+               (CASE m.mem_grade
+                    WHEN  0 THEN '普通会员'
+                    WHEN  1 THEN '钻石会员'
+                    WHEN  2 THEN '超级会员'
+                    ELSE 'null' END) AS 'mem_grade', m.mem_balance, m.mem_time, m.mem_sum, m.mem_integral,
+              m.mem_balancedsum, c.cr_id,c.cr_name, c.cr_phone, c.cr_id_number, c.cr_sex, c.cr_time
+        from member m left join customer c on m.mem_khid=c.cr_id
+        <where>
+            <if test="memGrade!=null and memGrade!=''">
+                and mem_grade =#{memGrade}
+            </if>
+        </where>
+        order by m.mem_id desc
+    </select>
 </mapper>

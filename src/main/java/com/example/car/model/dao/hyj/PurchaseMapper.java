@@ -1,5 +1,7 @@
 package com.example.car.model.dao.hyj;
 
+import com.example.car.model.pojos.hyj.Comm;
+import com.example.car.model.pojos.hyj.Purchase;
 import com.example.car.model.pojos.hyj.Store;
 import com.example.car.model.pojos.hyj.Supplier;
 import com.example.car.model.pojos.kj.Staff;
@@ -11,5 +13,7 @@ import java.util.List;
 public interface PurchaseMapper {
     List<Supplier> findAllSupplier();
     List<Store> findAllStore();
-    List<Staff> findCaiGou(Staff staff);
+    List<Staff> findCaiGou();
+    List<Comm> findCommBySupplierName(Comm c);
+    void addPur(Purchase pur);
 }

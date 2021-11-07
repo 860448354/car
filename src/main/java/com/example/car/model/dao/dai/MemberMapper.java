@@ -2,6 +2,7 @@ package com.example.car.model.dao.dai;
 
 import com.example.car.model.pojos.dai.Member;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
