@@ -63,4 +63,8 @@ public class ActivityServices {
         List<Activity> list = mapper.selectByChoose(activity);/*调用查询方法*/
         return new PageInfo<>(list);/*将查询结果封装到PageInfo对象中*/
     }
+    /*修改state*/
+    public Integer updataByState(Activity activity){
+        return mapper.updataByState(activity);
+    }
 }
