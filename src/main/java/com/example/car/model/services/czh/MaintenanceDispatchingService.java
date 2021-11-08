@@ -7,6 +7,7 @@ import com.example.car.model.pojos.czh.MaintenanceDispatching;
 import com.example.car.vojo.czh.MaintVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * 维修派工service
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MaintenanceDispatchingService {
     @Autowired
     MaintenanceDispatchingMapper mapper;

@@ -5,6 +5,7 @@ import com.example.car.model.pojos.czh.ConfirmCompleted;
 import com.example.car.vojo.czh.ComVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.List;
  * 完工记录service
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ConfirmCompletedService {
 
     @Autowired

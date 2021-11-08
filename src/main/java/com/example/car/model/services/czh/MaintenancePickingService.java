@@ -5,6 +5,7 @@ import com.example.car.model.pojos.czh.MaintenancePicking;
 import com.example.car.model.pojos.hyj.RepeComm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * 维修领料service
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class MaintenancePickingService {
     @Autowired
     MaintenancePickingMapper mapper;
