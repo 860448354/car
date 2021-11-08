@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface PutStoreMapper {
     List<Purchase> findPurD();
+    List<Purchase> findPurY();
     void editState(Purchase purchase);
     void addPutStore(@Param("putSto") PutSto putSto,@Param("storeName")String storeName);
     void addPutXq(@Param("list") List<PurXq> purXq,@Param("putStoId") int putStoId);

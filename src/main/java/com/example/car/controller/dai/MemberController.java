@@ -2,9 +2,8 @@ package com.example.car.controller.dai;
 
 import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.pojos.dai.Member;
-import com.example.car.model.services.dai.MemberServices;
+import com.example.car.model.services.dai.MemberService;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ import java.util.List;
 @RequestMapping( "/member")
 public class MemberController {
     @Autowired
-    MemberServices services;
+    MemberService services;
 
     /*分页联合查询*/
     @GetMapping("search")
@@ -43,7 +42,17 @@ public class MemberController {
     public Integer insterAll(@RequestBody Member member){
         Integer ins=services.insterAll(member);
         Integer inn= services.updataByMem(member.getCrId().getCrId());
-        System.out.println("this is"+member.getCrId().getCrId());
         return ins;
+    }
+    /*修改客户基本资料*/
+    @PostMapping("updataByCustomer")
+    public Integer updataByCustomer(@RequestBody Customer customer){
+        System.out.println("this is"+customer);
+        return services.updataByCustomer(customer);
+    }
+    /*查询所有客户*/
+    @GetMapping("selectcus")
+    public List<Customer> selectAllCus(){
+        return services.selectByCus();
     }
 }

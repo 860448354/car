@@ -31,13 +31,19 @@
     <select id="findPurD" resultMap="purchase">
         select * from purchase pur inner join pur_xq px
         on pur.pur_id = px.pur_id where pur.pur_state = '待收货'
+        order by pur.pur_time desc
+    </select>
+    <select id="findPurY" resultMap="purchase">
+        select * from purchase pur inner join pur_xq px
+        on pur.pur_id = px.pur_id where pur.pur_state = '已收货'
+        order by pur.pur_time desc
     </select>
     <!--已审核的订单修改为待收货-->
     <update id="editState">
         update purchase set pur_state = '待收货' where pur_id = #{purId}
     </update>
     <!--新增入库单-->
-    <insert id="addPutStore" useGeneratedKeys="true" parameterType="com.example.car.model.pojos.hyj.PutSto" keyProperty="putStoId">
+    <insert id="addPutStore" useGeneratedKeys="true" parameterType="com.example.car.model.pojos.hyj.PutSto" keyProperty="putSto.putStoId">
         insert into put_sto(put_sto_time,put_sto_num,put_sto_name,store_name)
         values(now(),#{putSto.putStoNum},#{putSto.putStoName},#{storeName})
     </insert>

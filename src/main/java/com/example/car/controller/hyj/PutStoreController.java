@@ -19,6 +19,10 @@ public class PutStoreController {
     public List<Purchase> findPurD(){
         return putStoreService.findPurD();
     }
+    @RequestMapping("findPurY")
+    public List<Purchase> findPurY(){
+        return putStoreService.findPurY();
+    }
     @RequestMapping("editState")
     public void editState(@RequestBody Purchase purchase){
         putStoreService.editState(purchase);

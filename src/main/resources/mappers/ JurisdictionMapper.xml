@@ -2,12 +2,73 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.kj.JurisdictionMapper">
+
+<!--    查所有权限-->
     <select id="selectAll" resultMap="base2">
         SELECT j.j_id,j.j_name,j2.j_name AS j_name2,j2.*,j2.j_id AS j_id2 FROM jurisdiction j
             INNER JOIN jurisdiction j2
             ON j.j_id=j2.`j_upid`
+    </select>
 
 
+
+<!--    根据角色id 查权限-->
+    <select id="selectByrid" resultMap="base">
+        SELECT j.* FROM role_jurisdiction rn
+         INNER JOIN jurisdiction j
+         ON rn.`juris_id`=j.`j_id` AND rn.rolei_id=#{rid}  AND j.j_upid!=0
+    </select>
+
+<!--    根据角色id 数组 查 权限，去掉重复的权限-->
+    <select id="selectByrids" resultMap="base2">
+        SELECT d.j_id,d.j_name,e.*,e.j_id AS j_id2,e.j_name AS j_name2 FROM
+            (
+                SELECT j.* FROM role_jurisdiction rn
+                                    INNER JOIN jurisdiction j ON j.`j_id`=rn.`juris_id`
+                                    INNER JOIN role r ON r.`r_id`=rn.`rolei_id` AND j_upid=0
+                                <if test="rids != null">
+                                    AND r.r_id in
+                                    <foreach collection="rids" open="(" close=")" item="rid" separator=",">
+                                        #{rid}
+                                    </foreach>
+                                    GROUP BY j.`j_id`
+                                </if>
+
+            )AS d
+                INNER JOIN
+            (
+                SELECT a.* FROM
+                    (SELECT j.* FROM role_jurisdiction rn
+                                         INNER JOIN jurisdiction j ON j.`j_id`=rn.`juris_id`
+                                         INNER JOIN role r ON r.`r_id`=rn.`rolei_id`
+
+                                                    <if test="rids != null">
+                                                        AND r.r_id in
+                                                        <foreach collection="rids" open="(" close=")" item="rid" separator=",">
+                                                            #{rid}
+                                                        </foreach>
+                                                        GROUP BY j.`j_id`
+                                                    </if>
+                        )
+                        AS a
+                        INNER JOIN
+                    (SELECT j.* FROM role_jurisdiction rn
+                                         INNER JOIN jurisdiction j ON j.`j_id`=rn.`juris_id`
+                                         INNER JOIN role r ON r.`r_id`=rn.`rolei_id`
+
+                                                        <if test="rids != null">
+                                                            AND r.r_id in
+                                                            <foreach collection="rids" open="(" close=")" item="rid" separator=",">
+                                                                #{rid}
+                                                            </foreach>
+                                                            GROUP BY j.`j_id`
+                                                        </if>
+                        )
+                        AS b
+                    ON a.j_upid=b.j_id
+
+            )AS e
+            ON d.j_id=e.j_upid
     </select>
 
 

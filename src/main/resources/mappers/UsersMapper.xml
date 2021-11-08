@@ -10,6 +10,11 @@
           AND sf.sf_state=1
     </select>
 
+
+    <select id="selectAll" resultType="User" >
+
+    </select>
+
     <resultMap id="base" type="com.example.car.model.pojos.kj.User">
         <id column="u_id" property="uId"/>
         <result column="u_account" property="uAccount"/>
@@ -23,6 +28,8 @@
             <result column="sf_card" property="sfCard" />
             <result column="sf_state" property="sfState" />
         </association>
+
+
     </resultMap>
 
     <insert id="userAdd">

@@ -16,6 +16,9 @@ public class StaffConroller {
     @Autowired
     StaffServices staffServices;
 
+    /** 查所有员工
+     * @return
+     */
     @GetMapping("all")
     public MyResult selectAll(){
         return (staffServices.selectAll());

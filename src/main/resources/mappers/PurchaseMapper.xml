@@ -72,11 +72,20 @@
     <select id="findTable" resultMap="purchase">
         select * from purchase pur inner join pur_xq px
         on pur.pur_id = px.pur_id where pur.pur_state = '待审核'
-        order by pur_time desc
+        order by pur.pur_time desc
     </select>
     <!--查询所有已审核的订单-->
     <select id="findTable2" resultMap="purchase">
         select * from purchase pur inner join pur_xq px
         on pur.pur_id = px.pur_id where pur.pur_state = '已审核'
+        order by pur.pur_time desc
+    </select>
+    <!--根据订单号模糊查询-->
+    <select id="findPurLikeById" resultMap="purchase">
+        select * from purchase pur inner join pur_xq px
+        on pur.pur_id = px.pur_id where pur.pur_state = '待审核'
+        or pur.pur_state = '已审核'
+        having pur_order like '%${purOrder}%'
+        order by pur.pur_time desc
     </select>
 </mapper>

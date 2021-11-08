@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.dai.ClientreviewMapper">
+    <resultMap id="viewResult" type="com.example.car.model.pojos.dai.Clientreview">
+        <id column="review_id" property="revId"></id>
+        <result column="review_time" property="revTime"></result>
+        <result column="review_result" property="revResult"></result>
+        <association property="revCare" javaType="com.example.car.model.pojos.dai.Customercare">
+            <id property="custId" column="cust_id"></id>
+            <result property="custTheme" column="cust_theme"></result>
+            <result property="custTime" column="cust_time"></result>
+            <result property="custContent" column="cust_content"></result>
+            <result property="custState" column="cust_state"></result>
+        </association>
+    </resultMap>
+    <!--新增-->
+     <insert id="insterByClient" parameterType="com.example.car.model.pojos.dai.Clientreview">
+         insert into clientreview(review_id,review_time,review_result,review_care)
+                values
+                       (#{revId},#{revTime},#{revResult},#{revCare.custId})
+     </insert>
+    <!--id查询-->
+    <select id="selectByClient" resultMap="viewResult">
+        SELECT v.review_result
+        FROM clientreview v LEFT JOIN customercare e ON v.review_care=e.cust_id
+        WHERE v.review_care=#{id}
+    </select>
+</mapper>
