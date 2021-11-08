@@ -1,7 +1,9 @@
 package com.example.car.model.dao.czh;
 
 import com.example.car.model.pojos.czh.ConfirmCompleted;
+import com.example.car.vojo.czh.ComVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.math.BigDecimal;
@@ -23,5 +25,5 @@ public interface ConfirmCompletedMapper {
     /** 查询确认完工
      * @return
      */
-    List<ConfirmCompleted> selectConCom();
+    List<ConfirmCompleted> selectConCom(@Param("comVo") ComVo comVo);
 }

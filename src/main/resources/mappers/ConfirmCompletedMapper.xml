@@ -32,8 +32,19 @@
         sf.sf_id,sf.sf_name
     </sql>
     <select id="selectConCom" resultMap="confirm">
-        select <include refid="conCom"></include> from confirm_completed cc inner join car_message cm on cc.completed_car_id = cm.car_message_id
-
-                                           inner join staff sf on cc.emp_wx = sf.sf_id
+        select <include refid="conCom"></include> from confirm_completed cc
+            inner join car_message cm on cc.completed_car_id = cm.car_message_id
+            inner join staff sf on cc.emp_wx = sf.sf_id
+       <where>
+           <if test="comVo.carNumber != null and comVo.carNumber != ''">
+               and cm.car_number like concat('%',#{comVo.carNumber},'%')
+           </if>
+           <if test="comVo.carType != null and comVo.carType">
+               and cm.car_type like concat('%',#{comVo.carType},'%')
+           </if>
+           <if test="comVo.staffName != null and comVo.staffName != ''">
+               and sf.sf_name like concat('%',#{comVo.staffName},'%')
+           </if>
+       </where>
     </select>
 </mapper>

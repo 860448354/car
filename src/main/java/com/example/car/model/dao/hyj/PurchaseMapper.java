@@ -17,4 +17,5 @@ public interface PurchaseMapper {
     void addPurXq(@Param("purId") int purId,@Param("list") List<PurXq> purXq);
     List<Purchase> findTable();
     List<Purchase> findTable2();
+    List<Purchase> findPurLikeById(@Param("purOrder") String purOrder);
 }
