@@ -18,6 +18,6 @@ import java.util.List;
 public class MaintenancePicking {
     private Integer mpId;
     private Integer pickingNum;
-    private List<RepeComm> commPicking;
+    private RepeComm commPicking;
     private MaintenanceDispatching dispatching;
 }
