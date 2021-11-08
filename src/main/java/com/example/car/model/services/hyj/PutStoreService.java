@@ -4,6 +4,8 @@ import com.example.car.model.dao.hyj.PutStoreMapper;
 import com.example.car.model.pojos.hyj.Purchase;
 import com.example.car.model.pojos.hyj.PutSto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,6 +24,7 @@ public class PutStoreService {
     public void editState(Purchase purchase){
         putStoreMapper.editState(purchase);
     }
+    @Transactional(propagation = Propagation.REQUIRED)
     public void addPutStore(PutSto putSto){
         putStoreMapper.addPutStore(putSto,putSto.getPurchase().getStoreName());
         putStoreMapper.addPutXq(putSto.getPurchase().getPurXq(), putSto.getPutStoId());
