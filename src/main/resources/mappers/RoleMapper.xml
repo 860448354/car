@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.kj.RoleMapper">
+    <insert id="add">
+        INSERT INTO `role` (`r_id`, `r_name`)
+        VALUES(NULL,#{name});
+    </insert>
+
+<!--    根据员工id 查角色-->
+    <select id="selectBySfid" resultMap="role">
+        SELECT r.* FROM
+            staff sf INNER JOIN
+            staff_role se
+            ON sf.sf_id=se.staff_id
+                     INNER JOIN role r
+                                ON r.r_id=se.role_id
+        WHERE sf.sf_id=#{sfid}
+    </select>
+
+    <resultMap id="role" type="Role">
+        <id property="rId" column="r_id" />
+        <result property="rName" column="r_name" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="base">
+        SELECT * FROM role r
+                          LEFT JOIN  staff_role s
+                                     ON s.role_id =r.r_id
+                          LEFT JOIN staff sf
+                                    ON s.staff_id=sf.sf_id
+    </select>
+
+    <resultMap id="base" type="Role">
+        <id property="rId" column="r_id" />
+        <result property="rName" column="r_name" />
+        <collection property="myStaff" ofType="Staff" >
+            <id column="sf_id" property="sfId"/>
+            <result column="sf_name" property="sfName" />
+        </collection>
+    </resultMap>
+</mapper>

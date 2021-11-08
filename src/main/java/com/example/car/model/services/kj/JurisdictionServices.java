@@ -16,4 +16,20 @@ public class JurisdictionServices {
     public MyResult selectAll(){
         return  MyResult.SUCCESS_DATA(jurisdictionMapper.selectAll());
     }
+
+    /** 根据角色 id 查权限
+     * @param rid
+     * @return
+     */
+    public MyResult selectByRid(Integer rid){
+        return MyResult.SUCCESS_DATA(jurisdictionMapper.selectByrid(rid));
+    }
+
+    /** 根据角色id 数组 查权限 去掉重复
+     * @param rids
+     * @return
+     */
+    public MyResult sekectByRids(Integer[] rids){
+        return MyResult.SUCCESS_DATA(jurisdictionMapper.selectByrids(rids));
+    }
 }
