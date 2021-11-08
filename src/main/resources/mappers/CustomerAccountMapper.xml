@@ -34,6 +34,48 @@
         </association>
     </resultMap>
 
+    <resultMap id="customerAccountMap" type="com.example.car.model.pojos.csp.CustomerAccount">
+        <id property="accountId" column="account_id"/>
+        <result property="ccId" column="cc_id"/>
+        <result property="accountDate" column="account_date"/>
+        <result property="accountDue" column="account_due"/>
+        <result property="accountReceived" column="account_received"/>
+        <result property="accountCoupon" column="account_coupon"/>
+        <result property="accountEnter" column="account_enter"/>
+        <result property="accountType" column="account_type"/>
+        <association property="confirmCompleted" javaType="com.example.car.model.pojos.czh.ConfirmCompleted">
+            <id property="ccId" column="cc_id"/>
+            <result property="maintenanceAmount" column="maintenance_amount"/>
+            <result property="completedTime" column="completed_time"/>
+            <association property="completedCarId" javaType="com.example.car.model.pojos.czh.CarMessage">
+                <id property="carMessageId" column="car_message_id"/>
+                <result property="carNumber" column="car_number"/>
+                <result property="carType" column="car_type"/>
+                <association property="carCust" javaType="com.example.car.model.pojos.czh.Customer">
+                    <id property="crId" column="cr_id"/>
+                    <result property="crName" column="cr_name"/>
+                </association>
+                <collection property="maintenancePickings" ofType="com.example.car.model.pojos.czh.MaintenancePicking">
+                    <id property="mpId" column="mp_id"/>
+                    <result property="pickingNum" column="picking_num"/>
+                    <association property="commPicking" javaType="com.example.car.model.pojos.hyj.RepeComm">
+                        <id property="repeCommId" column="repe_comm_id"/>
+                        <result property="repeCommName" column="repe_comm_name"/>
+                        <result property="repeCommSpe" column="repe_comm_spe"/>
+                        <result property="repeCommCar" column="repe_comm_car"/>
+                        <result property="repeCommUnit" column="repe_comm_unit"/>
+                        <result property="repeCommMoney" column="repe_comm_money"/>
+                    </association>
+                </collection>
+            </association>
+        </association>
+        <association property="staff" javaType="com.example.car.model.pojos.kj.Staff">
+            <id column="sf_id" property="sfId"/>
+            <result column="sf_name" property="sfName" />
+        </association>
+    </resultMap>
+
+    <!--查询未结算的完工单-->
     <select id="selConfirm" resultMap="confirmMap">
         select * from confirm_completed cc
                           left join car_message cm on cc.completed_car_id = cm.car_message_id
@@ -43,5 +85,42 @@
                           left join repe r on mp.lp_id = r.repe_id
                           left join repe_comm rc on r.repe_comm_id = rc.repe_comm_id
                           left join staff s on cc.emp_wx = s.sf_id
+       where cc.cc_id not in (select cc_id from customer_account)
+        <if test="crName != null and '' != crName">
+           and cur.cr_name like '%${crName}%'
+        </if>
+        <if test="carNumber != null and '' != carNumber">
+            and cm.car_number like '%${carNumber}%'
+        </if>
+    </select>
+
+    <!--新增客户结算单-->
+    <insert id="addCustomerAccount">
+        insert into customer_account values (0,#{crId},#{ccId},#{accountDue},#{accountReceived},
+                                              #{accountCoupon},#{accountEnter},#{accountType},
+                                              #{sfId},current_timestamp )
+    </insert>
+
+    <!--查询客户往来账-->
+    <select id="selCustomerAccount" resultMap="customerAccountMap">
+        select * from customer_account ca left join confirm_completed cc on ca.cc_id = cc.cc_id
+                                          left join car_message cm on cc.completed_car_id = cm.car_message_id
+                                          left join customer cur on cm.customer_car_id = cur.cr_id
+                                          left join maintenance_dispatching md on cm.car_message_id = md.car_id
+                                          left join maintenance_picking mp on md.md_id = mp.md_id
+                                          left join repe r on mp.lp_id = r.repe_id
+                                          left join repe_comm rc on r.repe_comm_id = rc.repe_comm_id
+                                          left join staff s on ca.sf_id = s.sf_id
+        <where>
+            <if test="start != null and '' != start and end != null and '' != end">
+                date_format(ca.account_date,'%Y-%m-%d %H:%i:%s') between #{start} and #{end}
+            </if>
+            <if test="crName != null and '' != crName">
+                and cur.cr_name like '%${crName}%'
+            </if>
+            <if test="carNumber != null and '' != carNumber">
+                and cm.car_number like '%${carNumber}%'
+            </if>
+        </where>
     </select>
 </mapper>
