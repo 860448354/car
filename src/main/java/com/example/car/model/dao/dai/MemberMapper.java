@@ -1,7 +1,9 @@
 package com.example.car.model.dao.dai;
 
+import com.example.car.model.pojos.czh.ConfirmCompleted;
 import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.pojos.dai.Member;
+import com.example.car.vojo.czh.ComVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,4 +23,6 @@ public interface MemberMapper {
   Integer updataByMem(Integer id);
   /*修改客户信息*/
   Integer updataByCustomer(Customer customer);
+  /*查询所有客户*/
+  List <Customer> selectByCus();
 }

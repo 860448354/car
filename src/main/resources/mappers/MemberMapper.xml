@@ -55,15 +55,22 @@
     </select>
     <!--分页-->
     <select id="selectByChooseCus" resultType="com.example.car.model.pojos.czh.Customer">
-        select cr_id, cr_name, cr_phone, cr_id_number, cr_sex, cr_time, isdelete ,cr_member from customer
+        select cr_id, cr_name, cr_phone, cr_id_number, cr_sex, cr_time, isdelete ,cr_member
+        from customer
+        <where>
+            <if test="crName!=null and crName!=''">
+                and cr_name =#{crName}
+            </if>
+        </where>
+        order by cr_id desc
     </select>
     <!--新增-->
     <insert id="insterAll" parameterType="com.example.car.model.pojos.dai.Member">
         insert into member (mem_id,mem_grade,mem_balance,mem_time,
                             mem_sum,mem_integral,mem_balancedsum,
-                            mem_khid)
+                            mem_khid,mem_zkid)
          values (#{memId},#{memGrade},#{memBalance},#{memTime},#{memSum},
-                 #{memIntegral},#{memBalancedsum},#{crId.crId})
+                 #{memIntegral},#{memBalancedsum},#{crId.crId},#{memZkid.berdId})
     </insert>
     <!--修改非会员-->
     <update id="updataByMem" parameterType="com.example.car.model.pojos.czh.Customer">
@@ -71,6 +78,12 @@
     </update>
     <!--修改客户信息-->
     <update id="updataByCustomer" parameterType="com.example.car.model.pojos.czh.Customer">
-        update customer set cr_name, cr_phone, cr_id_number, cr_sex ,cr_member
+        update customer set cr_name=#{crName}, cr_phone=#{crPhone}, cr_sex=#{crSex} where cr_id=#{crId}
     </update>
+    <!--查询所有客户-->
+    <select id="selectByCus" resultType="com.example.car.model.pojos.czh.Customer">
+        select cr_id, cr_name, cr_phone, cr_id_number, cr_sex, cr_time, isdelete ,cr_member
+        from customer
+        order by cr_id desc
+    </select>
 </mapper>

@@ -53,4 +53,8 @@ public class PurchaseController {
     public List<Purchase> findTable2(){
         return purchaseService.findTable2();
     }
+    @RequestMapping("findPurLikeById")
+    public List<Purchase> findPurLikeById(String purOrder){
+        return purchaseService.findPurLikeById(purOrder);
+    }
 }

@@ -1,17 +1,20 @@
 package com.example.car.model.services.dai;
 
 import com.example.car.model.dao.dai.MemberMapper;
+import com.example.car.model.pojos.czh.ConfirmCompleted;
 import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.pojos.dai.Member;
+import com.example.car.vojo.czh.ComVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
-public class MemberServices {
+public class MemberService {
     @Autowired
     MemberMapper mapper;
     /*分页查询*/
@@ -46,4 +49,9 @@ public class MemberServices {
     public Integer updataByCustomer(Customer customer){
         return mapper.updataByCustomer(customer);
     }
+    /*查询所有客户*/
+    public List<Customer> selectByCus(){
+        return mapper.selectByCus();
+    }
+
 }

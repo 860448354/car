@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.dai.CustomercareMapper">
+    <resultMap id="customerResult" type="com.example.car.model.pojos.dai.Customercare">
+
+        <id property="custId" column="cust_id"></id>
+        <result property="custTheme" column="cust_theme"></result>
+        <result property="custTime" column="cust_time"></result>
+        <result property="custContent" column="cust_content"></result>
+        <result property="custState" column="cust_state"></result>
+        <association property="custCzrid" javaType="com.example.car.model.pojos.kj.User">
+            <id column="u_id" property="uId"></id>
+            <result column="u_account" property="uAccount"></result>
+        </association>
+        <association property="activityEmpid" javaType="com.example.car.model.pojos.kj.Staff">
+            <id column="sf_id" property="sfId"></id>
+            <result column="sf_name" property="sfName"></result>
+        </association>
+        <association property="custType" javaType="com.example.car.model.pojos.dai.Caretype">
+            <id column="ctype_id" property="ctypeId"></id>
+            <result column="ctype_name" property="ctypeName"></result>
+        </association>
+        <collection property="cares" ofType="com.example.car.model.pojos.dai.Carestaff">
+            <id property="careId" column="care_id"></id>
+            <association property="careCus" javaType="com.example.car.model.pojos.czh.Customer">
+                <id column="cr_id" property="crId"></id>
+                <result column="cr_id_number" property="crIdNumber"></result>
+                <result column="cr_name" property="crName"></result>
+                <result column="cr_phone" property="crPhone"></result>
+                <result column="cr_sex" property="crSex"></result>
+                <result column="cr_time" property="crTime"></result>
+            </association>
+        </collection>
+    </resultMap>
+    <insert id="insterAllCare" parameterType="com.example.car.model.pojos.dai.Customercare">
+        <selectKey keyProperty="custId" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into customercare(cust_id,cust_theme,cust_time,cust_content,cust_state,cust_czrid,cust_type )
+        values (#{custId},#{custTheme},#{custTime},#{custContent},#{custState},#{custCzrid.uId},#{custType.ctypeId})
+    </insert>
+    <insert id="insterByCare" parameterType="com.example.car.model.pojos.dai.Carestaff">
+         insert into carestaff(care_id,care_khid,care_ghid) values (#{careId},#{careCus.crId},#{careCustom.custId})
+    </insert>
+    <!--分页查询-->
+    <select id="selectByChooseCus" resultMap="customerResult">
+        SELECT c.cust_id, c.cust_theme, c.cust_time, c.cust_content,c.cust_state,u.sf_name ,t.ctype_name FROM customercare c
+        LEFT JOIN staff u ON u.sf_id=c.`cust_czrid`
+        LEFT JOIN caretype t ON t.ctype_id=c.cust_type
+        <where>
+            <if test="custTheme!=null and custTheme!=''">
+                and cust_theme =#{custTheme}
+            </if>
+        </where>
+        order by c.cust_id desc
+    </select>
+    <!--id查询-->
+    <select id="selectBySta" resultMap="customerResult">
+        SELECT r.`cr_name`
+          FROM carestaff f
+              LEFT JOIN customercare c ON f.`care_ghid`= c.`cust_id`
+              LEFT JOIN customer r ON f.`care_khid`=r.`cr_id`
+        WHERE c.`cust_id`=#{id}
+    </select>
+    <!--修改-->
+    <update id="updateByState" parameterType="com.example.car.model.pojos.dai.Customercare">
+        update customercare set cust_state=#{custState} where cust_id=#{custId}
+    </update>
+
+</mapper>
