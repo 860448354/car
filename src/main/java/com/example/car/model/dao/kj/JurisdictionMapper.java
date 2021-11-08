@@ -11,4 +11,5 @@ public interface JurisdictionMapper {
     List<Jurisdiction> selectAll();
     List<Jurisdiction> selectByrid(Integer rid);
     List<Jurisdiction> selectByrids(@Param("rids") Integer [] integers);
+    List<Jurisdiction> selectByridsPlus(@Param("rids") Integer [] integers);
 }

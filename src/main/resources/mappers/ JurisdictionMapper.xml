@@ -71,6 +71,22 @@
             ON d.j_id=e.j_upid
     </select>
 
+<!--    存储 状态管理器的 路由-->
+    <select id="selectByridsPlus" resultMap="base">
+        SELECT j.* FROM role_jurisdiction rn
+        INNER JOIN jurisdiction j
+        ON rn.`juris_id`=j.`j_id`  AND j.j_upid!=0
+
+        <if test="rids != null">
+            AND rn.rolei_id in
+            <foreach collection="rids" open="(" close=")" item="rid" separator=",">
+                #{rid}
+            </foreach>
+
+        </if>
+
+
+    </select>
 
 
     <resultMap id="base" type="Jurisdiction">

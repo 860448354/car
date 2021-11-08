@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.car.model.dao.kj.StaffRoleMapper">
+<!--   关联用户 -->
     <insert id="staffRoleAdd">
         insert into `staff_role` (`staff_role_id`, `staff_id`, `role_id`)
         values(null ,#{staffid},#{roleid});
     </insert>
+<!--    移除用户-->
+    <delete id="staffRoleDele">
+        DELETE FROM staff_role WHERE staff_id =#{staffid} AND role_id=#{roleid}
+    </delete>
 </mapper>
