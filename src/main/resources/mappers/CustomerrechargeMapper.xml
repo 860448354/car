@@ -39,5 +39,6 @@
     <select id="selectAll" resultType="com.example.car.model.pojos.dai.Customerrecharge">
         SELECT charge_id,charge_time,charge_menoy,charge_balance,
                charge_khid FROM customerrecharge WHERE charge_khid=#{id}
+        order by charge_id desc
     </select>
 </mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.dai.ComplaintMapper">
+    <resultMap id="complaintResult" type="com.example.car.model.pojos.dai.Complaint">
+        <id property="comId" column="com_id"></id>
+        <result property="comName" column="com_name"></result>
+        <result property="comResult" column="com_result"></result>
+        <result property="comRemark" column="com_remark"></result>
+        <result property="comTime" column="com_time"></result>
+        <association property="comSta" javaType="com.example.car.model.pojos.kj.Staff">
+            <id column="sf_id" property="sfId"></id>
+            <result column="sf_name" property="sfName"></result>
+        </association>
+        <association property="comCustomer" javaType="com.example.car.model.pojos.czh.Customer">
+            <id column="cr_id" property="crId"></id>
+            <result column="cr_id_number" property="crIdNumber"></result>
+            <result column="cr_name" property="crName"></result>
+            <result column="cr_phone" property="crPhone"></result>
+            <result column="cr_sex" property="crSex"></result>
+            <result column="cr_time" property="crTime"></result>
+        </association>
+        <association property="comType" javaType="com.example.car.model.pojos.dai.Complainttype">
+            <id column="complain_id" property="complainId"></id>
+            <result column="complain_name" property="complainName"></result>
+        </association>
+        <association property="comEmer" javaType="com.example.car.model.pojos.dai.Emergency">
+            <id column="emer_id" property="emerId"></id>
+            <result column="emer_name" property="emerName"></result>
+        </association>
+    </resultMap>
+    <!--查询-->
+     <select id="selectStaff" resultType="com.example.car.model.pojos.kj.Staff">
+         select f.sf_id, f.sf_name, f.sf_phone, f.sf_card, f.sf_state, f.sf_dpid, f.sf_ptid from staff f
+         order by f.sf_id desc
+     </select>
+    <!--查询-->
+    <select id="selectCustomer" resultType="com.example.car.model.pojos.czh.Customer">
+        select cr_id, cr_name, cr_phone, cr_id_number, cr_sex, cr_time, isdelete ,cr_member
+        from customer
+        order by cr_id desc
+    </select>
+    <!--查询-->
+    <select id="selectEmer" resultType="com.example.car.model.pojos.dai.Emergency">
+        select e.emer_id, e.emer_name  from emergency e order by e.emer_id desc
+    </select>
+    <!--查询-->
+    <select id="selectType" resultType="com.example.car.model.pojos.dai.Complainttype">
+        select p.complain_id, p.complain_name from complainttype p order by p.complain_id desc
+    </select>
+    <!--新增投诉记录-->
+    <insert id="insterComplaint" parameterType="com.example.car.model.pojos.dai.Complaint">
+        insert  into complaint(com_id,com_name,com_result,
+                               com_remark,com_time,com_yuangid,
+                               com_khid,com_tsid,com_type)
+              values(#{comId},#{comName},#{comResult},#{comRemark},#{comTime},
+                     #{comSta.sfId},#{comCustomer.crId},
+                     #{comEmer.emerId},#{comType.complainId})
+    </insert>
+    <select id="selectByChooseCom" resultMap="complaintResult">
+        select t.com_id, t.com_name, t.com_result,
+               t.com_time, t.com_remark, t.com_yuangid,
+               t.com_khid, t.com_tsid, t.com_type,f.sf_name,
+               c.cr_name,p.complain_name,e.emer_name
+        from complaint t
+                 left join staff f on f.sf_id=t.com_yuangid
+                 left join customer c on c.cr_id=t.com_khid
+                 left join complainttype p on t.com_type=p.complain_id
+                 left join emergency e on e.emer_id =t.com_tsid
+        <where>
+            <if test="comName!=null and comName!=''">
+                and com_name =#{comName}
+            </if>
+        </where>
+        order by t.com_id desc
+    </select>
+    <!--修改-->
+    <update id="updateByCom" parameterType="com.example.car.model.pojos.dai.Complaint">
+        update complaint set com_result=#{comResult} where com_id=#{comId}
+    </update>
+</mapper>
