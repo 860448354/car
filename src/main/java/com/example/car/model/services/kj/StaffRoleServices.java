@@ -23,4 +23,14 @@ public class StaffRoleServices {
         return  integer>0?MyResult.SUCCESS:MyResult.FAILURE("新增失败");
 
     }
+
+    /** 移除用户角色
+     * @param staffid
+     * @param roleid
+     * @return
+     */
+    public MyResult staffRoleDelete(Integer staffid,Integer roleid){
+        Integer integer = staffRoleMapper.staffRoleDele(staffid, roleid);
+        return integer>0?MyResult.SUCCESS:MyResult.FAILURE("新增失败");
+    }
 }

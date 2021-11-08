@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface RoleJurisdictionMapper {
     Integer roleJurisdictionAdd(@Param("rid")Integer rid,@Param("juris") Integer[] juris);
+    Integer roleJurisdictionDelte(Integer rid);
 }

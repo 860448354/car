@@ -1,8 +1,8 @@
 package com.example.car.model.pojos.dai;
 
 public class Emergency {
-    private Integer emerId;
-    private String emerName;
+    private Integer emerId;/*编号*/
+    private String emerName;/*名称*/
 
     @Override
     public String toString() {

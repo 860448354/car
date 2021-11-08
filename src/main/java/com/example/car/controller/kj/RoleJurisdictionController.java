@@ -16,6 +16,8 @@ public class RoleJurisdictionController {
     public MyResult insetRoleJuris(@PathVariable("rid") Integer  rid, @RequestBody Integer[] juris){
         System.out.println("拿到角色id"+rid);
         System.out.println("拿到权限数组"+juris.length);
+        MyResult myResult = roleJurisdictionServices.deleteRouleJuris(rid);
+        System.out.println("删除后"+myResult);
 
         return roleJurisdictionServices.insetRoleJuris(rid, juris);
 

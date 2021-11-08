@@ -68,9 +68,9 @@
     <insert id="insterAll" parameterType="com.example.car.model.pojos.dai.Member">
         insert into member (mem_id,mem_grade,mem_balance,mem_time,
                             mem_sum,mem_integral,mem_balancedsum,
-                            mem_khid)
+                            mem_khid,mem_zkid)
          values (#{memId},#{memGrade},#{memBalance},#{memTime},#{memSum},
-                 #{memIntegral},#{memBalancedsum},#{crId.crId})
+                 #{memIntegral},#{memBalancedsum},#{crId.crId},#{memZkid.berdId})
     </insert>
     <!--修改非会员-->
     <update id="updataByMem" parameterType="com.example.car.model.pojos.czh.Customer">
@@ -84,5 +84,6 @@
     <select id="selectByCus" resultType="com.example.car.model.pojos.czh.Customer">
         select cr_id, cr_name, cr_phone, cr_id_number, cr_sex, cr_time, isdelete ,cr_member
         from customer
+        order by cr_id desc
     </select>
 </mapper>

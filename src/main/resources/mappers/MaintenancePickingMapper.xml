@@ -5,24 +5,32 @@
         <resultMap id="picking" type="MaintenancePicking">
             <id property="mpId" column="mp_id"></id>
             <result property="pickingNum" column="picking_num"></result>
-           <association property="dispatching" javaType="MaintenanceDispatching">
-               <id property="mdId" column="md_id"></id>
-               <result property="dispatchingTime" column="dispatching_time"></result>
-               <association property="staff" javaType="Staff">
-                   <id property="sfId" column="sf_id"></id>
-                   <result property="sfName" column="sf_name"></result>
-               </association>
-           </association>
-            <collection property="commPicking" ofType="RepeComm">
-                <id property="repeCommId" column="repe_comm_id"/>
-                <result property="supplierName" column="supplier_name"/>
-                <result property="repeCommName" column="comm_name"/>
-                <result property="repeCommSpe" column="comm_spe"/>
-                <result property="repeCommCar" column="comm_car"/>
-                <result property="repeCommUnit" column="comm_unit"/>
-                <result property="repeCommMoney" column="comm_money"/>
-                <result property="repeCommNum" column="comm_num"/>
-            </collection>
+            <association property="commPicking" javaType="RepeComm">
+                <id property="repeCommId" column="repe_omm_id"></id>
+                <result property="supplierName" column="supplier_name"></result>
+                <result property="repeCommName" column="repe_comm_name"></result>
+                <result property="repeCommSpe" column="repe_comm_spe"></result>
+                <result property="repeCommMoney" column="repe_comm_money"></result>
+            </association>
+            <association property="dispatching" javaType="MaintenanceDispatching">
+                <id property="mdId" column="md_id"></id>
+                <result property="dispatchingState" column="dispatching_state"></result>
+                <result property="dispatchingTime" column="dispatching_time"></result>
+                <result property="moneyMaint" column="money_maint"></result>
+                <result property="materialCost" column="material_cost"></result>
+                <association property="carMessage" javaType="CarMessage">
+                    <id property="carMessageId" column="car_message_id"></id>
+                    <result property="carNumber" column="car_number"></result>
+                    <result property="carType" column="car_type"></result>
+                </association>
+                <association property="staff" javaType="Staff">
+                    <id column="sf_id" property="sfId"/>
+                    <result column="sf_name" property="sfName" />
+                    <result column="sf_phone" property="sfPhone" />
+                    <result column="sf_card" property="sfCard" />
+                    <result column="sf_state" property="sfState" />
+                </association>
+            </association>
         </resultMap>
     <insert id="insertPick">
         insert into maintenance_picking values (null,#{mdId},#{lpId},#{pickingNum})
@@ -34,5 +42,7 @@
                                              inner join maintenance_dispatching md on mp.md_id = md.md_id
 
                                              inner join staff sf on sf.sf_id = md.emp_id
+
+                                             inner join car_message cm on cm.car_message_id = md.car_id
     </select>
 </mapper>

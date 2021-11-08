@@ -29,7 +29,15 @@ public class JurisdictionServices {
      * @param rids
      * @return
      */
-    public MyResult sekectByRids(Integer[] rids){
+    public MyResult selectByRids(Integer[] rids){
         return MyResult.SUCCESS_DATA(jurisdictionMapper.selectByrids(rids));
+    }
+
+    /** 根据角色id 数组 查路由路径
+     * @param rids
+     * @return
+     */
+    public MyResult selectByRidsPlus(Integer[] rids){
+        return MyResult.SUCCESS_DATA(jurisdictionMapper.selectByridsPlus(rids));
     }
 }

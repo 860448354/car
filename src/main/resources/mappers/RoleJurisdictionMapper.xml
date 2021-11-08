@@ -13,4 +13,10 @@
 
 
     </insert>
+
+    <delete id="roleJurisdictionDelte">
+        DELETE FROM role_jurisdiction WHERE rolei_id=#{rid}
+    </delete>
+
+
 </mapper>
