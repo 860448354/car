@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
+/**
+ * 完工实体
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

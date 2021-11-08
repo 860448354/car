@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.car.model.dao.czh.ConfirmCompletedMapper">
+
+
+    <!--新增完工记录-->
+    <insert id="insertConfirm">
+        insert into confirm_completed values (null ,current_timestamp ,#{carMessageId},#{alMoney},#{sfId})
+    </insert>
+
+    <resultMap id="confirm" type="ConfirmCompleted">
+        <id property="ccId" column="cc_id"></id>
+        <result property="completedTime" column="completed_time"></result>
+        <result property="maintenanceAmount" column="maintenance_amount"></result>
+        <association property="completedCarId" javaType="CarMessage">
+            <id property="carMessageId" column="car_message_id"></id>
+            <result property="carNumber" column="car_number"></result>
+            <result property="carType" column="car_type"></result>
+        </association>
+        <association property="empWx" javaType="Staff">
+            <id property="sfId" column="sf_id"></id>
+            <result property="sfName" column="sf_name"></result>
+        </association>
+    </resultMap>
+
+    <sql id="conCom">
+        cc.cc_id,cc.completed_time,cc.maintenance_amount,
+        cm.car_message_id,cm.car_number,cm.car_type,
+        sf.sf_id,sf.sf_name
+    </sql>
+    <select id="selectConCom" resultMap="confirm">
+        select <include refid="conCom"></include> from confirm_completed cc inner join car_message cm on cc.completed_car_id = cm.car_message_id
+
+                                           inner join staff sf on cc.emp_wx = sf.sf_id
+    </select>
+</mapper>

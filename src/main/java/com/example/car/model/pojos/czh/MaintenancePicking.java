@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * 维修领料实体
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
