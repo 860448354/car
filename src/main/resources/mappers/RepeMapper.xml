@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.hyj.RepeMapper">
+    <resultMap id="store" type="com.example.car.model.pojos.hyj.RepeComm">
+        <id property="repeCommId" column="repe_comm_id"/>
+        <result property="repeCommName" column="repe_comm_name"/>
+        <result property="repeCommSpe" column="repe_comm_spe"/>
+        <result property="repeCommCar" column="repe_comm_car"/>
+        <result property="repeCommUnit" column="repe_comm_unit"/>
+        <result property="repeCommNum" column="repe_comm_num"/>
+        <result property="repeCommMoney" column="repe_comm_money"/>
+        <result property="supplierName" column="supplier_name"/>
+        <collection property="store" ofType="com.example.car.model.pojos.hyj.Store">
+            <id property="storeId" column="store_id"/>
+            <result property="storeName" column="store_name"/>
+        </collection>
+    </resultMap>
+    <select id="findRepe" resultMap="store">
+        select * from repe r inner join store s
+        on r.store_id = s.store_id inner join repe_comm c
+        on c.repe_comm_id = r.repe_comm_id where s.store_name = #{storeName}
+    </select>
+    <!--<resultMap id="findStore" type="com.example.car.model.pojos.hyj.Store">
+        <id property="storeId" column="store_id"/>
+        <result property="storeName" column="store_name"/>
+        <collection property="repeComms" ofType="com.example.car.model.pojos.hyj.RepeComm">
+            <id property="repeCommId" column="repe_comm_id"/>
+            <result property="repeCommName" column="repe_comm_name"/>
+            <result property="repeCommSpe" column="repe_comm_spe"/>
+            <result property="repeCommCar" column="repe_comm_car"/>
+            <result property="repeCommUnit" column="repe_comm_unit"/>
+            <result property="repeCommNum" column="repe_comm_num"/>
+            <result property="repeCommMoney" column="repe_comm_money"/>
+            <result property="supplierName" column="supplier_name"/>
+        </collection>
+    </resultMap>-->
+    <select id="findRe" resultMap="store">
+        select * from store s inner join repe_comm c
+        on s.store_id = c.store_id where s.store_name = #{storeName}
+    </select>
+</mapper>

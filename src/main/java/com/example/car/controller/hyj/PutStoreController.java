@@ -1,6 +1,7 @@
 package com.example.car.controller.hyj;
 
 import com.example.car.model.pojos.hyj.Purchase;
+import com.example.car.model.pojos.hyj.PutSto;
 import com.example.car.model.services.hyj.PutStoreService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +22,9 @@ public class PutStoreController {
     @RequestMapping("editState")
     public void editState(@RequestBody Purchase purchase){
         putStoreService.editState(purchase);
+    }
+    @RequestMapping("addPutStore")
+    public void addPutStore(@RequestBody PutSto putSto){
+        putStoreService.addPutStore(putSto);
     }
 }

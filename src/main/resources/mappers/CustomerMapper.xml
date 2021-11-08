@@ -20,6 +20,9 @@
         <sql id="carAndCust">
             cr.cr_id,cr.cr_id_number,cr.cr_name,cr.cr_phone,cr.cr_sex,cr.cr_time,car.car_message_id,car.car_number,car.car_type,car.car_state
         </sql>
+        <sql id="custAll">
+        cr_id,cr_id_number,cr_name,cr_phone,cr_sex,cr_time
+        </sql>
     <!--新增客户信息-->
     <insert id="insertCostomer">
     <selectKey keyProperty="crId" order="AFTER" resultType="java.lang.Integer">
@@ -50,12 +53,22 @@
 
     <!--查询所有-->
     <select id="selectCustAll" resultType="Customer">
-        select * from customer
+        select <include refid="custAll"></include> from customer
     </select>
 
     <!--删除客户-->
     <update id="updateCust">
             update customer set  isdelete = 0 where cr_id = #{crId}
     </update>
+
+
+
+    <sql id="commList">
+       comm_id,supplier_name,comm_name,comm_spe,comm_car,comm_unit,comm_num,comm_money
+    </sql>
+
+    <select id="selectComm" resultType="Comm">
+        select <include refid="commList"></include> from `comm`
+    </select>
 
 </mapper>
