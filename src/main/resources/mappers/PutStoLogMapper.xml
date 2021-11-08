@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.hyj.PutStoLogMapper">
+    <!--<resultMap id="putSto" type="com.example.car.model.pojos.hyj.PutSto">
+        <id property="putStoId" column="pur_sto_id"/>
+        <result property="putStoName" column="put_sto_name"/>
+        <result property="putStoNum" column="put_sto_num"/>
+        <result property="putStoTime" column="put_sto_time"/>
+        <collection property="putXq" ofType="com.example.car.model.pojos.hyj.PutXq">
+            <id property="putXqId" column="put_xq_id"/>
+            <result property="supplierName" column="supplier_name"/>
+            <result property="commName" column="comm_name"/>
+            <result property="commSpe" column="comm_spe"/>
+            <result property="commCar" column="comm_car"/>
+            <result property="commUnit" column="comm_unit"/>
+            <result property="commMoney" column="comm_money"/>
+            <result property="commNum" column="comm_num"/>
+            <result property="putStoId" column="put_sto_id"/>
+        </collection>
+    </resultMap>-->
+    <resultMap id="putSto" type="com.example.car.model.pojos.hyj.PutSto">
+        <id property="putStoId" column="put_sto_id"/>
+        <result property="putStoNum" column="put_sto_num"/>
+        <result property="putStoName" column="put_sto_name"/>
+        <result property="putStoTime" column="put_sto_time"/>
+        <collection property="putXq" ofType="com.example.car.model.pojos.hyj.PutXq">
+            <id property="putXqId" column="put_xq_id"/>
+            <result property="supplierName" column="supplier_name"/>
+            <result property="commName" column="comm_name"/>
+            <result property="commSpe" column="comm_spe"/>
+            <result property="commCar" column="comm_car"/>
+            <result property="commUnit" column="comm_unit"/>
+            <result property="commNum" column="comm_num"/>
+            <result property="commMoney" column="comm_money"/>
+            <result property="putStoId" column="put_sto_id"/>
+        </collection>
+    </resultMap>
+    <select id="findPutStoLog" resultMap="putSto">
+        select * from put_sto ps inner join put_xq px
+        on ps.put_sto_id = px.put_sto_id
+    </select>
+</mapper>
