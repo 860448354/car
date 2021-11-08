@@ -7,8 +7,7 @@ public class Clientreview {
     private Integer revId;/*编号*/
     private Timestamp revTime;/*回访时间*/
     private String revResult;/*回访结果*/
-   /* private Integer revResult;责任员工
-    private Integer revResult;客户外键*/
+    private Customercare revCare;/*关怀外键*/
 
     @Override
     public String toString() {
@@ -17,6 +16,14 @@ public class Clientreview {
                 ", revTime=" + revTime +
                 ", revResult='" + revResult + '\'' +
                 '}';
+    }
+
+    public Customercare getRevCare() {
+        return revCare;
+    }
+
+    public void setRevCare(Customercare revCare) {
+        this.revCare = revCare;
     }
 
     public Integer getRevId() {
