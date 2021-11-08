@@ -35,4 +35,7 @@ public class PurchaseService {
     public List<Purchase> findTable2(){
         return purchaseMapper.findTable2();
     }
+    public List<Purchase> findPurLikeById(String purOrder){
+        return purchaseMapper.findPurLikeById(purOrder);
+    }
 }
