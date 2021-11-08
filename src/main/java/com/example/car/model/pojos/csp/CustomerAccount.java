@@ -1,6 +1,6 @@
 package com.example.car.model.pojos.csp;
 
-import com.example.car.vojo.czh.CarCustVo;
+import com.example.car.model.pojos.czh.Customer;
 
 public class CustomerAccount {
     private int accountId;
@@ -9,7 +9,7 @@ public class CustomerAccount {
     private double accountCoupon;
     private String accountEnter;
     private String accountType;
-    private CarCustVo customer;
+    private Customer customer;
 
     public int getAccountId() {
         return accountId;
@@ -59,11 +59,11 @@ public class CustomerAccount {
         this.accountType = accountType;
     }
 
-    public CarCustVo getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(CarCustVo customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 }
