@@ -26,7 +26,7 @@
     </resultMap>
 
     <sql id="maintCarCrSt">
-        md.dispatching_state,md.dispatching_time,md.money_maint,md.material_cost,
+        md.md_id,md.dispatching_state,md.dispatching_time,md.money_maint,md.material_cost,
         sf.sf_id,sf.sf_name,
         cm.car_message_id,cm.car_number,cm.car_type,cm.car_state,
         cr.cr_id,cr.cr_name
