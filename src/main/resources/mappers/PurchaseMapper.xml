@@ -72,6 +72,7 @@
     <select id="findTable" resultMap="purchase">
         select * from purchase pur inner join pur_xq px
         on pur.pur_id = px.pur_id where pur.pur_state = '待审核'
+        order by pur_time desc
     </select>
     <!--查询所有已审核的订单-->
     <select id="findTable2" resultMap="purchase">
