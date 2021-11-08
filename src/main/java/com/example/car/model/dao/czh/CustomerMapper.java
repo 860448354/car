@@ -1,6 +1,7 @@
 package com.example.car.model.dao.czh;
 
 import com.example.car.model.pojos.czh.Customer;
+import com.example.car.model.pojos.hyj.Comm;
 import com.example.car.vojo.czh.CarCustVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -37,5 +38,11 @@ public interface CustomerMapper {
      * @return
      */
     Integer updateCust(int crid);
+
+
+    /** 查询所有配件
+     * @return
+     */
+    List<Comm> selectComm();
 
 }

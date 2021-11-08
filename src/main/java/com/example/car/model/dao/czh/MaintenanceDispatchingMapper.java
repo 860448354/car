@@ -5,6 +5,7 @@ import com.example.car.vojo.czh.MaintVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -24,5 +25,9 @@ public interface MaintenanceDispatchingMapper {
      * @return
      */
    Integer insetMaint(MaintVo maintVo);
+
+
+   Integer updateMoeny(@Param("money") BigDecimal money,
+                       @Param("mdId") Integer mdId);
 
 }

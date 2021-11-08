@@ -4,6 +4,7 @@ import com.example.car.model.dao.czh.CarMessageMapper;
 import com.example.car.model.dao.czh.CustomerMapper;
 import com.example.car.model.pojos.czh.CarMessage;
 import com.example.car.model.pojos.czh.Customer;
+import com.example.car.model.pojos.hyj.Comm;
 import com.example.car.vojo.czh.CarCustVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -54,9 +55,21 @@ public class CustomerService{
 
     }
 
+    /** 删除一条客户记录
+     * @param crId
+     * @return
+     */
     public Integer deleteCust(int crId){
        int i =  customerMapper.updateCust(crId);
         return i;
+    }
+
+    /** 查询所有材料
+     * @return
+     */
+    public List<Comm> selectListComm(){
+        List<Comm> list = customerMapper.selectComm();
+        return list;
     }
 
 }

@@ -8,6 +8,7 @@
         <result property="dispatchingState" column="dispatching_state"></result>
         <result property="dispatchingTime" column="dispatching_time"></result>
         <result property="moneyMaint" column="money_maint"></result>
+        <result property="materialCost" column="material_cost"></result>
         <association property="carMessage" javaType="CarMessage">
             <id property="carMessageId" column="car_message_id"></id>
             <result property="carNumber" column="car_number"></result>
@@ -24,8 +25,15 @@
         </association>
     </resultMap>
 
+    <sql id="maintCarCrSt">
+        md.md_id,md.dispatching_state,md.dispatching_time,md.money_maint,md.material_cost,
+        sf.sf_id,sf.sf_name,
+        cm.car_message_id,cm.car_number,cm.car_type,cm.car_state,
+        cr.cr_id,cr.cr_name
+    </sql>
+
     <select id="selectMaint" resultMap="maint">
-        select * from maintenance_dispatching md inner join staff sf on md.emp_id = sf.sf_id
+        select <include refid="maintCarCrSt"></include> from maintenance_dispatching md inner join staff sf on md.emp_id = sf.sf_id
 
                                                  inner join car_message cm on cm.car_message_id = md.car_id
 
@@ -48,6 +56,10 @@
 
 
     <insert id="insetMaint">
-        insert into maintenance_dispatching values (null ,#{crId},#{carMessageId},#{sfId},#{State},#{paiGongTime},300)
+        insert into maintenance_dispatching values (null ,#{crId},#{carMessageId},#{sfId},#{State},#{paiGongTime},300,0)
     </insert>
+
+    <update id="updateMoeny">
+        update maintenance_dispatching set material_cost = #{money} where md_id = #{mdId}
+    </update>
 </mapper>

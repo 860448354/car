@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://47.94.59.49:3306/qixiu?useUnicode=true&characterEncoding=utf-8&useOldAliasMetadataBehavior=true
+    url: jdbc:mysql://47.94.59.49:3306/qixiu?useUnicode=true&characterEncoding=utf-8&useOldAliasMetadataBehavior=true&allowMultiQueries=true
     password: aSbjyCG4XCHT6LFe
     username: qixiu
     type: com.alibaba.druid.pool.DruidDataSource

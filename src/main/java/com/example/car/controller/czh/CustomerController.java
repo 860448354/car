@@ -1,6 +1,7 @@
 package com.example.car.controller.czh;
 
 import com.example.car.model.pojos.czh.Customer;
+import com.example.car.model.pojos.hyj.Comm;
 import com.example.car.model.services.czh.CarMessageService;
 import com.example.car.model.services.czh.CustomerService;
 import com.example.car.vojo.czh.CarCustVo;
@@ -56,5 +57,11 @@ public class CustomerController {
     public Integer delectCs(@RequestParam("crId")Integer crId){
         int i = customerService.deleteCust(crId);
         return i;
+    }
+
+    @GetMapping("commList")
+    public List<Comm> selectAllComm(){
+        List<Comm> list = customerService.selectListComm();
+        return list;
     }
 }

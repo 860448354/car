@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class PurXq {
     private int purXqId;
     private int purId;
+    private int putStoId;
     private String supplierName;
     private String commName;
     private String commSpe;
@@ -17,4 +18,5 @@ public class PurXq {
     private String commUnit;
     private double commMoney;
     private int commNum;
+    private int commSNum;
 }
