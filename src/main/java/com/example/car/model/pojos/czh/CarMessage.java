@@ -21,4 +21,5 @@ public class CarMessage {
 
     private Customer carCust; // 客户车辆关系字段
     private List<MaintenanceDispatching> maintenanceDispatchingCar;
+    private List<MaintenancePicking> maintenancePickings;
 }
