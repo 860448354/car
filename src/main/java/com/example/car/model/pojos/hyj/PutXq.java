@@ -7,16 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PurXq {
-    private int purXqId;
-    private int purId;
-    private int putStoId;
+public class PutXq {
+    private int putXqId;
     private String supplierName;
     private String commName;
     private String commSpe;
     private String commCar;
     private String commUnit;
     private double commMoney;
+    private int putStoId;
     private int commNum;
-    private int commSNum;
 }
