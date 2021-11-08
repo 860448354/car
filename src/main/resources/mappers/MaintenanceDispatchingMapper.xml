@@ -58,4 +58,8 @@
     <insert id="insetMaint">
         insert into maintenance_dispatching values (null ,#{crId},#{carMessageId},#{sfId},#{State},#{paiGongTime},300,0)
     </insert>
+
+    <update id="updateMoeny">
+        update maintenance_dispatching set material_cost = #{money} where md_id = #{mdId}
+    </update>
 </mapper>

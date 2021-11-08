@@ -1,11 +1,11 @@
 package com.example.car.controller.czh;
 
+import com.example.car.model.pojos.czh.MaintenancePicking;
 import com.example.car.model.services.czh.MaintenancePickingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("picking")
@@ -24,5 +24,13 @@ public class MaintnancePickingController {
 
                 return i;
 
+    }
+
+
+    @PostMapping("selectList")
+    public List<MaintenancePicking> selectListPick(){
+
+        List<MaintenancePicking> list = maintenancePickingService.selectList();
+        return list;
     }
 }
