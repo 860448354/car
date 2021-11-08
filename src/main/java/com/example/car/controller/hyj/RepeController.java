@@ -16,7 +16,6 @@ public class RepeController {
     RepeService repeService;
     @RequestMapping("findRepe")
     public List<Store> findRepe(String store){
-        System.err.println(store);
         return repeService.findRepe(store);
     }
     @RequestMapping("findRe")
