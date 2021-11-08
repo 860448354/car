@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.model.dao.kj.RoleJurisdictionMapper">
+    <insert id="roleJurisdictionAdd">
+        INSERT INTO `role_jurisdiction` (`role_juri_id`, `rolei_id`, `juris_id`)
+        VALUES
+               <if test="juris!=null">
+                   <foreach collection="juris" item="js" separator=",">
+                       (NULL,#{rid},#{js})
+                   </foreach>
+               </if>
+
+
+    </insert>
+</mapper>
