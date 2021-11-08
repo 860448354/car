@@ -14,7 +14,6 @@ public interface PutStoreMapper {
     void addPutStore(@Param("putSto") PutSto putSto,@Param("storeName")String storeName);
     void addPutXq(@Param("list") List<PurXq> purXq,@Param("putStoId") int putStoId);
     void editPutStoreState(PutSto putSto);
-    //void editPutStoreNum(@Param("list") List<PurXq> purXq,@Param("storeId") int storeId);
     void editPutStoreNum(@Param("repeComm") PurXq repeComm,@Param("commSNum") int commSNum,@Param("storeId")int storeId);
     Store findStoreByName(@Param("storeName") String storeName);
     RepeComm deRepeComm(@Param("commName")String commName);
