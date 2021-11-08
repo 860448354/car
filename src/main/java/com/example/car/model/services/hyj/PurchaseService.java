@@ -38,4 +38,8 @@ public class PurchaseService {
     public List<Purchase> findPurLikeById(String purOrder){
         return purchaseMapper.findPurLikeById(purOrder);
     }
+    public void delPur(Purchase pur){
+        purchaseMapper.delPur(pur);
+        purchaseMapper.delPurXq(pur);
+    }
 }
