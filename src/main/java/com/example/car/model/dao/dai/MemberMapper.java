@@ -21,4 +21,6 @@ public interface MemberMapper {
   Integer updataByMem(Integer id);
   /*修改客户信息*/
   Integer updataByCustomer(Customer customer);
+  /*查询所有客户*/
+  List <Customer> selectByCus();
 }

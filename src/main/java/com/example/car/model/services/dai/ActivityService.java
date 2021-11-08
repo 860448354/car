@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ActivityServices {
+public class ActivityService {
     @Autowired
     ActivityMapper mapper;
     /*新增活动*/

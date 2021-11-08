@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
-public class MemberServices {
+public class MemberService {
     @Autowired
     MemberMapper mapper;
     /*分页查询*/
@@ -45,5 +46,9 @@ public class MemberServices {
     /*修改客户信息*/
     public Integer updataByCustomer(Customer customer){
         return mapper.updataByCustomer(customer);
+    }
+    /*查询所有客户*/
+    public List<Customer> selectByCus(){
+        return mapper.selectByCus();
     }
 }

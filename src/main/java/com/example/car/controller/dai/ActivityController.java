@@ -1,25 +1,18 @@
 package com.example.car.controller.dai;
 
-import com.example.car.model.dao.dai.ActivityMapper;
-import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.pojos.dai.Activity;
-import com.example.car.model.pojos.dai.Actparticipants;
-import com.example.car.model.pojos.dai.Member;
-import com.example.car.model.services.dai.ActivityServices;
+import com.example.car.model.services.dai.ActivityService;
 import com.example.car.vojo.dai.ActivityMemberVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin
 @RequestMapping( "/activitynew")
 public class ActivityController {
     @Autowired
-    ActivityServices services;
+    ActivityService services;
 
     /*新增会员活动*/
     @PostMapping("inster")

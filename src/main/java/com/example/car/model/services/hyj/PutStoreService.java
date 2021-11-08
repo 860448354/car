@@ -15,6 +15,9 @@ public class PutStoreService {
     public List<Purchase> findPurD(){
         return putStoreMapper.findPurD();
     }
+    public List<Purchase> findPurY(){
+        return putStoreMapper.findPurY();
+    }
     public void editState(Purchase purchase){
         putStoreMapper.editState(purchase);
     }
