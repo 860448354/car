@@ -16,6 +16,7 @@ public class PutSto {
     private Date putStoTime;
     private String putStoNum;
     private String putStoName;
+    private String storeName;
     private Purchase purchase;
     private List<PutXq> putXq;
 }

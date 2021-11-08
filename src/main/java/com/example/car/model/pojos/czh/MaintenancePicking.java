@@ -9,12 +9,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * 维修领料实体
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class MaintenancePicking {
     private Integer mpId;
     private Integer pickingNum;
-    private List<RepeComm> commPicking;
+    private RepeComm commPicking;
     private MaintenanceDispatching dispatching;
 }

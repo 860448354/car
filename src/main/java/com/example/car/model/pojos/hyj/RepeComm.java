@@ -18,5 +18,6 @@ public class RepeComm {
     private String repeCommUnit;
     private double repeCommMoney;
     private int repeCommNum;
+    private int storeId;
     private List<Store> store;
 }

@@ -24,6 +24,7 @@
         <result property="putStoNum" column="put_sto_num"/>
         <result property="putStoName" column="put_sto_name"/>
         <result property="putStoTime" column="put_sto_time"/>
+        <result property="storeName" column="store_name"/>
         <collection property="putXq" ofType="com.example.car.model.pojos.hyj.PutXq">
             <id property="putXqId" column="put_xq_id"/>
             <result property="supplierName" column="supplier_name"/>
