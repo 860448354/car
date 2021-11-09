@@ -15,4 +15,9 @@ public class RoleJurisdictionServices {
         return integer>0?MyResult.SUCCESS:MyResult.FAILURE("角色权限新增失败");
     }
 
+    public MyResult deleteRouleJuris(Integer rid){
+        Integer integer = roleJurisdictionMapper.roleJurisdictionDelte(rid);
+        return integer>0?MyResult.SUCCESS:MyResult.FAILURE("角色权限删除失败");
+    }
+
 }

@@ -18,4 +18,6 @@ public interface PurchaseMapper {
     List<Purchase> findTable();
     List<Purchase> findTable2();
     List<Purchase> findPurLikeById(@Param("purOrder") String purOrder);
+    void delPur(Purchase pur);
+    void delPurXq(Purchase pur);
 }

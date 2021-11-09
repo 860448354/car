@@ -24,4 +24,15 @@ public class StaffRoleController {
         return staffRoleServices.staffRoleAdd(staffid, roleid);
     }
 
+    /** 移除用户
+     * @param staffid
+     * @param roleid
+     * @return
+     */
+    @PostMapping("dele")
+    public MyResult staffDelete(@RequestParam("staffid") Integer staffid,@RequestParam("roleid") Integer roleid){
+
+        return staffRoleServices.staffRoleDelete(staffid,roleid);
+    }
+
 }

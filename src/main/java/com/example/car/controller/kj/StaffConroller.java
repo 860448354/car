@@ -40,6 +40,15 @@ public class StaffConroller {
 
     }
 
+    @PostMapping("update")
+    public MyResult staffUpdate(@RequestBody Staff staff){
+        System.out.println("接受"+staff);
+
+        return staffServices.updateStaff(staff);
+
+    }
+
+
 
     @GetMapping("selectDp")
     public List<Staff> selectByDp(){

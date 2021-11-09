@@ -1,6 +1,7 @@
 package com.example.car.model.dao.czh;
 
 import com.example.car.model.pojos.czh.MaintenancePicking;
+import com.example.car.model.pojos.hyj.RepeComm;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,5 +25,11 @@ public interface MaintenancePickingMapper {
      * @return
      */
     List<MaintenancePicking> selectPick();
+
+
+
+    RepeComm selectRe(Integer reId);
+
+    Integer updateRe(Integer num, Integer repeId);
 
 }
