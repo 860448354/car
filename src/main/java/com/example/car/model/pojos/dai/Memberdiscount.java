@@ -1,8 +1,11 @@
 package com.example.car.model.pojos.dai;
+
+import java.math.BigDecimal;
+
 /*会员折扣表（Memberdiscount）*/
 public class Memberdiscount {
     private Integer berdId;/*编号*/
-    private String berdName;/*折扣*/
+    private BigDecimal berdName;/*折扣*/
 
     @Override
     public String toString() {
@@ -20,11 +23,11 @@ public class Memberdiscount {
         this.berdId = berdId;
     }
 
-    public String getBerdName() {
+    public BigDecimal getBerdName() {
         return berdName;
     }
 
-    public void setBerdName(String berdName) {
+    public void setBerdName(BigDecimal berdName) {
         this.berdName = berdName;
     }
 }

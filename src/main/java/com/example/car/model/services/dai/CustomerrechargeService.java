@@ -5,10 +5,12 @@ import com.example.car.model.pojos.dai.Customerrecharge;
 import com.example.car.model.pojos.dai.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor=Exception.class)
 public class CustomerrechargeService {
     @Autowired
     CustomerrechargeMapper mapper;

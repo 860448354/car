@@ -63,4 +63,13 @@ public class StaffServices {
         List<Staff> list = staffMapper.selectSta();
         return list;
     }
+
+    /** 根据员工id 修改员工信息
+     * @param staff
+     * @return
+     */
+    public MyResult updateStaff(Staff staff){
+        Integer update = staffMapper.update(staff);
+        return  update>0? MyResult.SUCCESS:MyResult.FAILURE("更新失败");
+    }
 }

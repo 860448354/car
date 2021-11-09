@@ -12,25 +12,19 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional(rollbackFor=Exception.class)
 public class CustomercareService {
     @Autowired
     CustomercareMapper mapper;
 
     public Integer insterAllCare(CustomercareVo customercareVo){
-        CustomercareVo customercareVoo=new CustomercareVo();
-        customercareVoo.setCustId(customercareVo.getCustId());
-        customercareVoo.setCustTheme(customercareVo.getCustTheme());
-        customercareVoo.setCustTime(customercareVo.getCustTime());
-        customercareVoo.setCustContent(customercareVo.getCustContent());
-        customercareVoo.setCustState(customercareVo.getCustState());
-        customercareVoo.setCustCzrid(customercareVo.getCustCzrid());
-        customercareVoo.setCustType(customercareVo.getCustType());
-        Integer ins= mapper.insterAllCare(customercareVoo);
+        Integer ins= mapper.insterAllCare(customercareVo);
         List<Object> list=customercareVo.getFruitesis();
         for(Object object : list) {
             System.out.println("this.is"+object);
@@ -40,7 +34,7 @@ public class CustomercareService {
             Customer customer=new Customer();
             customer.setCrId(i);
             Customercare customercare=new Customercare();
-            customercare.setCustId(customercareVoo.getCustId());
+            customercare.setCustId(customercareVo.getCustId());
             Carestaff carestaff=new Carestaff();
             carestaff.setCareCus(customer);
             carestaff.setCareCustom(customercare);

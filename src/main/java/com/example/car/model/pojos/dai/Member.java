@@ -18,6 +18,7 @@ public class Member {
     private BigDecimal memIntegral;/*会员积分*/
     private Customer crId;/*客户外键*/
     private List<Actparticipants> pants;/*会员活动人员表*/
+    private Memberdiscount memZkid;/*会员折扣*/
 
     @Override
     public String toString() {
@@ -31,7 +32,16 @@ public class Member {
                 ", memIntegral=" + memIntegral +
                 ", crId=" + crId +
                 ", pants=" + pants +
+                ", memZkid=" + memZkid +
                 '}';
+    }
+
+    public Memberdiscount getMemZkid() {
+        return memZkid;
+    }
+
+    public void setMemZkid(Memberdiscount memZkid) {
+        this.memZkid = memZkid;
     }
 
     public List<Actparticipants> getPants() {

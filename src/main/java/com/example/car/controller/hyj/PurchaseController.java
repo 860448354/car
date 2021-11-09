@@ -57,4 +57,8 @@ public class PurchaseController {
     public List<Purchase> findPurLikeById(String purOrder){
         return purchaseService.findPurLikeById(purOrder);
     }
+    @RequestMapping("delPur")
+    public void delPur(@RequestBody Purchase pur){
+        purchaseService.delPur(pur);
+    }
 }

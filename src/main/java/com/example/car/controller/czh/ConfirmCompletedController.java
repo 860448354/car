@@ -2,6 +2,7 @@ package com.example.car.controller.czh;
 
 import com.example.car.model.pojos.czh.ConfirmCompleted;
 import com.example.car.model.services.czh.ConfirmCompletedService;
+import com.example.car.vojo.czh.ComVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class ConfirmCompletedController {
     public Integer insertConfir( @RequestParam("carMessageId") int carMessageId,
                                 @RequestParam("alMoney") BigDecimal alMoney,
                                 @RequestParam("sfId") int sfId){
-
+        System.out.println("carMessageId"+carMessageId);
         Integer i = confirmCompletedService.insertCompleted( carMessageId, alMoney, sfId);
 
         return i;
@@ -41,8 +42,11 @@ public class ConfirmCompletedController {
      * @return
      */
     @PostMapping("selectCon")
-    public List<ConfirmCompleted> selectCon(){
-        List<ConfirmCompleted> list = confirmCompletedService.selectComp();
+    public List<ConfirmCompleted> selectCon(@RequestBody ComVo comVo){
+        System.out.println(comVo.getCarNumber()+"这是车牌号");
+        System.out.println(comVo.getCarType()+"这是车辆类型");
+        System.out.println(comVo.getStaffName()+"这是维修人");
+        List<ConfirmCompleted> list = confirmCompletedService.selectComp(comVo);
         return list;
     }
 }

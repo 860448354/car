@@ -4,12 +4,15 @@ import com.example.car.model.dao.hyj.PurchaseMapper;
 import com.example.car.model.pojos.hyj.*;
 import com.example.car.model.pojos.kj.Staff;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class PurchaseService {
     @Resource
     PurchaseMapper purchaseMapper;
@@ -37,5 +40,9 @@ public class PurchaseService {
     }
     public List<Purchase> findPurLikeById(String purOrder){
         return purchaseMapper.findPurLikeById(purOrder);
+    }
+    public void delPur(Purchase pur){
+        purchaseMapper.delPur(pur);
+        purchaseMapper.delPurXq(pur);
     }
 }

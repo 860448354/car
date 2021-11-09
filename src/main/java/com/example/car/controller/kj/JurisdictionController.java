@@ -35,7 +35,16 @@ public class JurisdictionController {
     @PostMapping("rids")
     public MyResult selectByrids(@RequestBody Integer[] rids){
         System.out.println("数组"+rids.length);
-        return jurisdictionServices.sekectByRids(rids);
+        return jurisdictionServices.selectByRids(rids);
+    }
+
+    /**根据角色id 查路由数据
+     * @param rids
+     * @return
+     */
+    @PostMapping("rides")
+    public MyResult selectByrides(@RequestBody Integer[] rids){
+        return jurisdictionServices.selectByRidsPlus(rids);
     }
 
 }

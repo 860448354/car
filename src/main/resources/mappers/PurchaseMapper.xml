@@ -88,4 +88,12 @@
         having pur_order like '%${purOrder}%'
         order by pur.pur_time desc
     </select>
+    <!--根据id删除主表-->
+    <delete id="delPur">
+        delete from purchase where pur_id = #{purId}
+    </delete>
+    <!--根据id删除从表-->
+    <delete id="delPurXq">
+        delete from pur_xq where pur_id = #{purId}
+    </delete>
 </mapper>

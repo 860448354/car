@@ -1,7 +1,9 @@
 package com.example.car.model.dao.dai;
 
+import com.example.car.model.pojos.czh.ConfirmCompleted;
 import com.example.car.model.pojos.czh.Customer;
 import com.example.car.model.pojos.dai.Member;
+import com.example.car.vojo.czh.ComVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

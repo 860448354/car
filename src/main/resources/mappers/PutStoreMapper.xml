@@ -59,15 +59,6 @@
     <update id="editPutStoreState">
         update purchase set pur_state = '已收货' where pur_id = #{purId}
     </update>
-    <!--<update id="editPutStoreNum">
-        <foreach collection="list" item="o" separator=";">
-            update repe_comm
-                <set>
-                    repe_comm_num = repe_comm_num + #{o.commSNum}
-                </set>
-            where repe_comm_name = #{o.commName} and store_id = #{storeId}
-        </foreach>
-    </update>-->
     <!--如果存在数据，入库后修改数量-->
     <update id="editPutStoreNum">
         update repe_comm set repe_comm_num = repe_comm_num + #{commSNum}
