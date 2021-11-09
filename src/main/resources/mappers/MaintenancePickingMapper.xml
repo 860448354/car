@@ -45,4 +45,13 @@
 
                                              inner join car_message cm on cm.car_message_id = md.car_id
     </select>
+
+
+    <select id="selectRe" resultType="RepeComm">
+        select * from repe_comm where repe_comm_id = #{reId}
+    </select>
+
+    <update id="updateRe">
+        update repe_comm set repe_comm_num = #{num} where repe_comm_id = #{repeId}
+    </update>
 </mapper>

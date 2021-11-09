@@ -4,6 +4,8 @@ import com.example.car.model.dao.hyj.PurchaseMapper;
 import com.example.car.model.pojos.hyj.*;
 import com.example.car.model.pojos.kj.Staff;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
@@ -25,6 +27,7 @@ public class PurchaseService {
     public List<Comm> findCommBySupplierName(@RequestBody Comm c){
         return purchaseMapper.findCommBySupplierName(c);
     }
+    @Transactional(propagation = Propagation.REQUIRED)
     public void addPur(Purchase pur){
         purchaseMapper.addPur(pur);
         purchaseMapper.addPurXq(pur.getPurId(),pur.getPurXq());
@@ -37,5 +40,10 @@ public class PurchaseService {
     }
     public List<Purchase> findPurLikeById(String purOrder){
         return purchaseMapper.findPurLikeById(purOrder);
+    }
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void delPur(Purchase pur){
+        purchaseMapper.delPur(pur);
+        purchaseMapper.delPurXq(pur);
     }
 }

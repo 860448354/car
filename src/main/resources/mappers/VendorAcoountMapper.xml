@@ -91,7 +91,7 @@
     <!--修改采购订单状态-->
     <update id="editPurchase">
         update purchase
-        set pur_state = '待收货',pur_per = #{sfName}
+        set pur_state = '已审核',pur_per = #{sfName}
         where pur_order = #{purOrder};
     </update>
 
