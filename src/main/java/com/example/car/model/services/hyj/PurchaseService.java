@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class PurchaseService {
     @Resource
     PurchaseMapper purchaseMapper;
@@ -27,7 +28,6 @@ public class PurchaseService {
     public List<Comm> findCommBySupplierName(@RequestBody Comm c){
         return purchaseMapper.findCommBySupplierName(c);
     }
-    @Transactional(propagation = Propagation.REQUIRED)
     public void addPur(Purchase pur){
         purchaseMapper.addPur(pur);
         purchaseMapper.addPurXq(pur.getPurId(),pur.getPurXq());
@@ -41,7 +41,6 @@ public class PurchaseService {
     public List<Purchase> findPurLikeById(String purOrder){
         return purchaseMapper.findPurLikeById(purOrder);
     }
-    @Transactional(propagation = Propagation.REQUIRED)
     public void delPur(Purchase pur){
         purchaseMapper.delPur(pur);
         purchaseMapper.delPurXq(pur);

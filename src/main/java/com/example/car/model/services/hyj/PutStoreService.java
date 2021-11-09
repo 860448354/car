@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class PutStoreService {
     @Resource
     PutStoreMapper putStoreMapper;
@@ -24,7 +25,6 @@ public class PutStoreService {
     public void editState(Purchase purchase){
         putStoreMapper.editState(purchase);
     }
-    @Transactional(propagation = Propagation.REQUIRED)
     public void addPutStore(PutSto putSto){
         putStoreMapper.addPutStore(putSto,putSto.getPurchase().getStoreName());
         putStoreMapper.addPutXq(putSto.getPurchase().getPurXq(), putSto.getPutStoId());
