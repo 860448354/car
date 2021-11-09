@@ -10,26 +10,19 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional(rollbackFor=Exception.class)
 public class ActivityService {
     @Autowired
     ActivityMapper mapper;
     /*新增活动*/
     public Integer insterAllActvity(ActivityMemberVo activityMemberVo){
-        ActivityMemberVo activity=new ActivityMemberVo();
-        activity.setActiId(activityMemberVo.getActiId());
-        activity.setActiName(activityMemberVo.getActiName());
-        activity.setActiSite(activityMemberVo.getActiSite());
-        activity.setActiTime(activityMemberVo.getActiTime());
-        activity.setActiState(activityMemberVo.getActiState());
-        activity.setActiPeoplesum(activityMemberVo.getActiPeoplesum());
-        activity.setTypId(activityMemberVo.getTypId());
-        activity.setActivityUid(activityMemberVo.getActivityUid());
-        Integer ins=mapper.insterAllActvity(activity);
+        Integer ins=mapper.insterAllActvity(activityMemberVo);
         System.out.println("look at me"+activityMemberVo);
         List<Object> list=activityMemberVo.getFruitesis();
         for(Object object : list) {
@@ -41,7 +34,7 @@ public class ActivityService {
             Customer customer=new Customer();
             customer.setCrId(ii);
             Activity activityo=new Activity();
-            activityo.setActiId(activity.getActiId());
+            activityo.setActiId(activityMemberVo.getActiId());
             Actparticipants actparticipants=new Actparticipants();
             actparticipants.setPanActId(activityo);
             actparticipants.setPanMemId(customer);
